@@ -1,0 +1,46 @@
+/* table styling */
+table input {
+    width: 100%;
+}
+tbody, td, tfoot, th, thead, tr {
+    border-color: none !important;
+    border-style: none !important;
+    border-width: none !important;
+}
+
+/* text wrapping behaviour */
+td,
+th {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* default spacing */
+.table-id {
+    min-width: 40px;
+    max-width: 40px;
+}
+.table-icon {
+    min-width: 50px;
+    max-width: 50px;
+    cursor: pointer;
+}
+.table-name {
+    min-width: 100px;
+    max-width: 100px;
+}
+.table-amount {
+    min-width: 80px;
+    max-width: 80px;
+}
+.table-unit {
+    min-width: 80px;
+    max-width: 80px;
+}
+.table-description {
+    min-width: 200px;
+    max-width: 200px;
+}
+.table-final-col {
+    width: 100%;
+}
