@@ -7,6 +7,9 @@ tbody, td, tfoot, th, thead, tr {
     border-style: none !important;
     border-width: none !important;
 }
+main {
+    display: flex;
+}
 
 /* text wrapping behaviour */
 td,
@@ -32,6 +35,7 @@ th {
 .table-amount {
     min-width: 120px;
     max-width: 120px;
+    text-align: right;
 }
 .table-unit {
     min-width: 120px;
