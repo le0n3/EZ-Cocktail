@@ -5,6 +5,9 @@
     display: inline-flex;
     background-repeat: no-repeat !important;
     padding: 10px;
+    position: relative;
+    top: 5px;
+    cursor: pointer;
 }
 .icon-arrow_back_ios {
     background: url('./arrow_back.svg');
