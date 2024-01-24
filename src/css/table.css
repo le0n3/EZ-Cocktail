@@ -17,30 +17,37 @@ th {
 }
 /* default spacing */
 .table-id {
-    min-width: 40px;
-    max-width: 40px;
-}
-.table-icon {
     min-width: 50px;
     max-width: 50px;
+}
+.table-icon {
+    min-width: 60px;
+    max-width: 60px;
     cursor: pointer;
 }
 .table-name {
-    min-width: 100px;
-    max-width: 100px;
+    min-width: 110px;
+    max-width: 110px;
 }
 .table-amount {
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 120px;
+    max-width: 120px;
 }
 .table-unit {
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 120px;
+    max-width: 120px;
 }
 .table-description {
-    min-width: 200px;
-    max-width: 200px;
+    min-width: 210px;
+    max-width: 210px;
 }
 .table-final-col {
     width: 100%;
+}
+
+/* Icons */
+thead .material-symbols-rounded {
+    position: relative;
+    top: 6px;
+    cursor: pointer;
 }
