@@ -13,24 +13,24 @@
 
     <!-- custom CSS -->
     <link href="../css/table.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <link href="../css/topBar.css" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand">
-            <span class="icon icon-local_bar"></span>
-            <span>EZ-Cocktail</span>
-            <span class="icon icon-arrow_forward_ios"></span>
-        </a>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page">Meine Zutaten</a>
-            </div>
-          </div>
+        <div class="d-block justify-left ms-2">
+            <a class="navbar-brand">
+                <span class="icon icon-local_bar"></span>
+                <span>EZ-Cocktail</span>
+            </a>
+            <a>•</a>
+            <a class="navbar-brand">
+                <span class="ms-4">Meine Zutaten</span>
+            </a>
         </div>
       </nav>
-    <main>
-        <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
+    <div class="main">
+        <div class="d-flex flex-column flex-shrink-0 bg-light vh-100">
             <ul class="nav nav-pills nav-flush flex-column mb-auto text-center sticky-top top-0">
               <li class="nav-item">
                 <a href="#" class="nav-link active py-3 border-bottom" aria-current="page" title="Meine Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
@@ -49,14 +49,15 @@
               </li>
             </ul>
           </div>
-          <div class="container">
-            <table class="table shadow p-3 mb-5 bg-body rounded table-striped">
+          <div class="table-container w-100 m-5 shadow rounded">
+            <table class="table bg-body table-striped">
                 <thead class="bg-light sticky-top top-0">
                     <tr>
-                        <th scope="col" class="table-icon"></th>
+                        <th scope="col"></th>
                         <th scope="col" class="table-name"><span>Name</span><span class="icon icon-expand_more text-primary"></span></th>
                         <th scope="col" class="table-amount"><span>Menge</span><span class="icon icon-unfold_more"></span></th>
                         <th scope="col" class="table-unit"><span>Einheit</span><span class="icon icon-unfold_more"></span></th>
+                        <th scope="col" class="table-type"><span>Typ</span><span class="icon icon-unfold_more"></span></th>
                         <th scope="col" class="table-final-col"><span>Beschreibung</span><span class="icon icon-unfold_more"></span></th>
                     </tr>
                     <tr>
@@ -66,6 +67,7 @@
                         <th scope="col" class="table-name"><input type="text"></th>
                         <th scope="col" class="table-amount"><input type="text"></th>
                         <th scope="col" class="table-unit"><input type="text"></th>
+                        <th scope="col" class="table-type"><input type="text"></th>
                         <th scope="col" class="table-final-col"><input type="text"></th>
                     </tr>
                 </thead>
@@ -75,172 +77,28 @@
                         <td class="table-name" title="Cola"><span>Cola</span></td>
                         <td class="table-amount" title="10000"><span>10000</span></td>
                         <td class="table-unit" title="ml"><span>ml</span></td>
+                        <td class="table-type" title="Softdrink"><span>Softdrink</span></td>
                         <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
                     </tr>
                     <tr>
                         <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
+                        <td class="table-name" title="Jack Daniels"><span>Jack Daniels</span></td>
+                        <td class="table-amount" title="250"><span>250</span></td>
                         <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
+                        <td class="table-type" title="Whiskey"><span>Whiskey</span></td>
+                        <td class="table-description" title="Jack Daniels ist eine berühmte amerikanische Whiskey-Marke, bekannt für ihren milden Geschmack und die Herstellung in Lynchburg, Tennessee, USA."><span>Jack Daniels ist eine berühmte amerikanische Whiskey-Marke, bekannt für ihren milden Geschmack und die Herstellung in Lynchburg, Tennessee, USA.</span></td>
                     </tr>
                     <tr>
                         <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="1"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
+                        <td class="table-name" title="Zitrone"><span>Zitrone</span></td>
+                        <td class="table-amount" title="3"><span>3</span></td>
+                        <td class="table-unit" title="Stück"><span>Stück</span></td>
+                        <td class="table-type" title="Frucht"><span>Frucht</span></td>
+                        <td class="table-description" title="Zitrone ist eine saure gelbe Frucht, reich an Vitamin C, mit erfrischendem Geschmack, oft in kulinarischen Anwendungen und Getränken verwendet."><span>Zitrone ist eine saure gelbe Frucht, reich an Vitamin C, mit erfrischendem Geschmack, oft in kulinarischen Anwendungen und Getränken verwendet.</span></td>
                     </tr>
                 </tbody>
               </table>
         </div>
-    </main>
+    </div>
    </body>
 </html>

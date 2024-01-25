@@ -7,8 +7,14 @@ tbody, td, tfoot, th, thead, tr {
     border-style: none !important;
     border-width: none !important;
 }
-main {
-    display: flex;
+body {
+    overflow: hidden;
+    margin: 0;
+}
+.table-container {
+    max-height: calc(100vh - 20vh);
+    overflow-y: auto;
+    padding: 0;
 }
 
 /* text wrapping behaviour */
@@ -29,8 +35,8 @@ th {
     cursor: pointer;
 }
 .table-name {
-    min-width: 110px;
-    max-width: 110px;
+    min-width: 200px;
+    max-width: 200px;
 }
 .table-amount {
     min-width: 120px;
@@ -45,8 +51,22 @@ th {
     min-width: 210px;
     max-width: 210px;
 }
+.table-description {
+    min-width: 120px;
+    max-width: 120px;
+}
 .table-final-col {
     width: 100%;
+}
+
+/* scrollbar style */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #999;
 }
 
 /* Icons */

@@ -29,6 +29,7 @@
 }
 .icon-expand_more {
     background: url('./expand_more.svg');
+    top: 8px;
 }
 .icon-format_list_bulleted {
     background: url('./format_list_bulleted.svg');
@@ -41,4 +42,5 @@
 }
 .icon-unfold_more {
     background: url('./unfold_more.svg');
+    top: 8px;    
 }
