@@ -9,6 +9,9 @@
     top: 5px;
     cursor: pointer;
 }
+.icon-add_circle {
+    background: url('./add_circle.svg');
+}
 .icon-arrow_back_ios {
     background: url('./arrow_back.svg');
 }

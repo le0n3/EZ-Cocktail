@@ -30,8 +30,8 @@ th {
     max-width: 50px;
 }
 .table-icon {
-    min-width: 60px;
-    max-width: 60px;
+    min-width: 45px;
+    max-width: 45px;
     cursor: pointer;
 }
 .table-name {
