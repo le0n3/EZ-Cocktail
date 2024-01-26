@@ -1,3 +1,10 @@
 .nav-pills .nav-link {
     border-radius: 0;
 }
+.main {
+    display: flex;
+}
+body {
+    overflow: hidden;
+    margin: 0;
+}
