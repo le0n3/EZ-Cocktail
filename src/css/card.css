@@ -8,6 +8,7 @@
 .card {
     margin: 20px;
     display: inline-block;
+    cursor: pointer;
 }
 .card img {
     padding: 15px;
@@ -15,4 +16,5 @@
 .cards-container {
     height: 80vh;
     overflow-y: auto;
+    max-height: 100vw;
 }
