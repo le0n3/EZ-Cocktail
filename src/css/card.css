@@ -1,0 +1,18 @@
+.description-container {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    text-align: justify;
+    -webkit-box-orient: vertical;
+}
+.card {
+    margin: 20px;
+    display: inline-block;
+}
+.card img {
+    padding: 15px;
+}
+.cards-container {
+    height: 80vh;
+    overflow-y: auto;
+}

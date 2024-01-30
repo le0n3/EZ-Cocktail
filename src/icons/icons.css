@@ -1,0 +1,49 @@
+/* Icons from Google Font, customized solution for better performance */
+.icon {
+    height: 25px;
+    width: 25px;
+    display: inline-flex;
+    background-repeat: no-repeat !important;
+    padding: 10px;
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+}
+.icon-add_circle {
+    background: url('./add_circle.svg');
+}
+.icon-arrow_back_ios {
+    background: url('./arrow_back.svg');
+}
+.icon-arrow_forward_ios {
+    background: url('./arrow_forward.svg');
+}
+.icon-checklist {
+    background: url('./checklist.svg');
+}
+.icon-close {
+    background: url('./close.svg');
+}
+.icon-edit {
+    background: url('./edit.svg');
+}
+.icon-expand_less {
+    background: url('./expand_less.svg');
+}
+.icon-expand_more {
+    background: url('./expand_more.svg');
+    top: 8px;
+}
+.icon-format_list_bulleted {
+    background: url('./format_list_bulleted.svg');
+}
+.icon-grocery {
+    background: url('./grocery.svg');
+}
+.icon-local_bar {
+    background: url('./local_bar.svg');
+}
+.icon-unfold_more {
+    background: url('./unfold_more.svg');
+    top: 8px;    
+}
