@@ -1,3 +1,6 @@
+<?php
+include_once("../php/DBConnector.php");
+?>
 <!doctype html>
 <html lang="de">
   <head>
@@ -73,30 +76,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="table-icon" title="Eintrag bearbeiten"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Cola"><span>Cola</span></td>
-                        <td class="table-amount" title="10000"><span>10000</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-type" title="Softdrink"><span>Softdrink</span></td>
-                        <td class="table-description" title="Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller."><span>Cola, ein erfrischendes Kohlensäuregetränk, besticht durch dunkelbraune Farbe und süß-herben Geschmack. Mit Koffein für Belebung, ist es weltweit als Durstlöscher und Mixkomponente beliebt. Ursprünglich 1886 vom Apotheker John Stith Pemberton erfunden, ist Cola heute ein zeitloser Klassiker und Markenzeichen vieler Getränkehersteller.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="Eintrag bearbeiten"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Jack Daniels"><span>Jack Daniels</span></td>
-                        <td class="table-amount" title="250"><span>250</span></td>
-                        <td class="table-unit" title="ml"><span>ml</span></td>
-                        <td class="table-type" title="Whiskey"><span>Whiskey</span></td>
-                        <td class="table-description" title="Jack Daniels ist eine berühmte amerikanische Whiskey-Marke, bekannt für ihren milden Geschmack und die Herstellung in Lynchburg, Tennessee, USA."><span>Jack Daniels ist eine berühmte amerikanische Whiskey-Marke, bekannt für ihren milden Geschmack und die Herstellung in Lynchburg, Tennessee, USA.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="table-icon" title="Eintrag bearbeiten"><span class="icon icon-edit"></span></td>
-                        <td class="table-name" title="Zitrone"><span>Zitrone</span></td>
-                        <td class="table-amount" title="3"><span>3</span></td>
-                        <td class="table-unit" title="Stück"><span>Stück</span></td>
-                        <td class="table-type" title="Frucht"><span>Frucht</span></td>
-                        <td class="table-description" title="Zitrone ist eine saure gelbe Frucht, reich an Vitamin C, mit erfrischendem Geschmack, oft in kulinarischen Anwendungen und Getränken verwendet."><span>Zitrone ist eine saure gelbe Frucht, reich an Vitamin C, mit erfrischendem Geschmack, oft in kulinarischen Anwendungen und Getränken verwendet.</span></td>
-                    </tr>
+
+                <?php
+
+                $ngg = DBConnection::readAll();
+                foreach($ngg as $ng)
+                {
+                    echo $ng->generateIngredientLine();
+                }
+        ?>
+
                 </tbody>
               </table>
         </div>
