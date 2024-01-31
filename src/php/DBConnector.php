@@ -23,14 +23,14 @@ class DBConnection
         return self::$connection;
     }
 
-    public static function readAll()
+    public static function readFiltertngredient(String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= ""): array
     {
         try {
 
             $ingredienz = array();
             $conn = self::getConnection();
 
-            $sql = "SELECT zutat.id, typ.name as Typen, zutat.name as Zutat, zutat.beschreibung,zutatinventar.menge, einheit.einheitBezeichnung FROM `zutat` Left JOIN einheit on zutat.id = einheit.zutatId Left JOIN typ on zutat.id = typ.zutatId left Join zutatinventar on zutat.id = zutatinventar.zutatId; ";
+            $sql = "SELECT * FROM `zutatgesamt` where Zutat LIKE '%". $Name."%' and menge LIKE '%". $Menge."%' and `einheitBezeichnung` LIKE '%". $Einheit."%' and Typen LIKE '%". $Typ."%' and beschreibung LIKE '%". $Beschribung."%';";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -40,10 +40,25 @@ class DBConnection
                 }
             }
 
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $ingredienz;
         }
         return $ingredienz;
 //$conn->close();
     }
+
+    public static function createIngredient($ingredeant) {
+
+       //TODO: erstellen des Create Befehles
+    }
+
+    public  static function updateIngredient($ingredient)
+    {
+        //TODO: erstellen des Update Befehls
+    }
+    public static function getAllRecipe()
+    {
+
+    }
+
 }
