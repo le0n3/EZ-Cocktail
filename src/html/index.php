@@ -37,7 +37,7 @@ include_once("../php/DBConnector.php");
         <div class="d-flex flex-column flex-shrink-0 bg-light vh-100">
             <ul class="nav nav-pills nav-flush flex-column mb-auto text-center sticky-top top-0">
               <li class="nav-item">
-                <a href="index.html" class="nav-link active py-3 border-bottom" aria-current="page" title="Meine Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Meine Zutaten">
+                <a href="index.php" class="nav-link active py-3 border-bottom" aria-current="page" title="Meine Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Meine Zutaten">
                     <span class="icon icon-grocery"></span>
                 </a>
               </li>

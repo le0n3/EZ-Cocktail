@@ -15,7 +15,7 @@
     padding: 15px;
 }
 .cards-container {
-    height: 80vh;
+    height: 95vh;
     overflow-y: auto;
     width: 95vw;
 }
