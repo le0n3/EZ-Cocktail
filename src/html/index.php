@@ -52,7 +52,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                 </a>
               </li>
               <li>
-                <a href="allRecipes.html" class="nav-link py-3 border-bottom" title="Alle Rezepte" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Alle Rezepte">
+                <a href="allRecipes.php" class="nav-link py-3 border-bottom" title="Alle Rezepte" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Alle Rezepte">
                     <span class="icon icon-format_list_bulleted"></span>
                 </a>
               </li>

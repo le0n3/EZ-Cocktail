@@ -1,3 +1,11 @@
+<?php
+include_once("../php/DBConnector.php");
+include_once("../php/Rezept/rezept.php");
+
+$recipes = DBConnection::readAllRecipes();
+
+?>
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -73,18 +81,12 @@
 <!--            </div>-->
           </div>
         <div class="row">
-          <div class="cards-container m-auto shadow rounded bg-light">
-            <div class="card openDetails" data-bs-toggle="modal" data-bs-target="#recipeDetail" data-id="1337">
-                <img src="https://media3.giphy.com/media/TcdpZwYDPlWXC/giphy.gif" class="card-img-top" alt="cooler-gandalf">
-                <div class="card-body">
-                  <h5 class="card-title">Gandalfs Elixier</h5>
-                  <div class="description-container">
-                    Gandalfs Elixier ist ein magischer Cocktail, der die Sinne verzaubert. Diese geheimnisvolle Mischung aus erlesenem Kräuterschnaps, frisch gepresstem Zitronensaft und einem Hauch von Lavendel entführt dich auf eine Reise durch die Welt der Fantasie. Die rauchige Note von Ingwer und der süße Kuss von Honig verleihen diesem Elixier eine einzigartige Tiefe. Ein Trank, der die Magie von Gandalf dem Grauen in jeder Schluck spürbar macht – ein Erlebnis, das die Sinne belebt und den Geist berauscht. Gandalfs Elixier, der Zauber in einem Glas.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <?php
+            foreach($recipes as $recipe)
+            {
+                echo $recipe->generateRecepeCard();
+            }
+            ?>
         </div>
       </div>
 
@@ -93,7 +95,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalTitle">Gandalfs Elixier</h5>
+            <h5 class="modal-title" id="modalTitle">Cocktail</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="detailInfo">
