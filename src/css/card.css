@@ -8,11 +8,19 @@
 .card {
     margin: 20px;
     display: inline-block;
+    cursor: pointer;
+    width: 18rem;
 }
 .card img {
     padding: 15px;
 }
 .cards-container {
-    height: 80vh;
+    height: 95vh;
     overflow-y: auto;
+    width: 95vw;
+}
+
+.filter-container {
+    overflow-y: auto;
+    width: 95vw;
 }
