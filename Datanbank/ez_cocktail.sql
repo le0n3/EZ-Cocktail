@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 01. Feb 2024 um 08:09
+-- Erstellungszeit: 01. Feb 2024 um 10:48
 -- Server-Version: 10.4.28-MariaDB
 -- PHP-Version: 8.2.4
 
@@ -52,15 +52,16 @@ INSERT INTO `einheit` (`id`, `name`, `einheitBezeichnung`, `zutatId`) VALUES
 CREATE TABLE `rezept` (
                           `id` int(11) NOT NULL,
                           `name` varchar(255) DEFAULT NULL,
-                          `beschreibung` text DEFAULT NULL
+                          `beschreibung` text DEFAULT NULL,
+                          `zubereitung` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Daten für Tabelle `rezept`
 --
 
-INSERT INTO `rezept` (`id`, `name`, `beschreibung`) VALUES
-    (1, 'Jacky Cola', 'erklrt sich ziemlich von allein');
+INSERT INTO `rezept` (`id`, `name`, `beschreibung`, `zubereitung`) VALUES
+    (1, 'Jacky Cola', 'erklrt sich ziemlich von allein', 'einfach alles in ein Glas Uns Fertig');
 
 -- --------------------------------------------------------
 
@@ -91,6 +92,7 @@ CREATE TABLE `rezeptgesamt` (
                                 `id` int(11)
     ,`name` varchar(255)
     ,`beschreibung` text
+    ,`zubereitung` text
     ,`url` varchar(255)
 );
 
@@ -144,11 +146,11 @@ INSERT INTO `zutat` (`id`, `name`, `beschreibung`) VALUES
 --
 CREATE TABLE `zutatgesamt` (
                                `id` int(11)
-    ,`Typen` varchar(255)
-    ,`Zutat` varchar(255)
+    ,`typ` varchar(255)
+    ,`name` varchar(255)
     ,`beschreibung` text
     ,`menge` float
-    ,`einheitBezeichnung` varchar(255)
+    ,`einheit` varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -201,7 +203,7 @@ INSERT INTO `zutat_rezept` (`id`, `menge`, `rezeptId`, `zutatId`) VALUES
 --
 DROP TABLE IF EXISTS `rezeptgesamt`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `rezeptgesamt`  AS SELECT `rezept`.`id` AS `id`, `rezept`.`name` AS `name`, `rezept`.`beschreibung` AS `beschreibung`, `rezeptbild`.`url` AS `url` FROM (`rezept` left join `rezeptbild` on(`rezept`.`id` = `rezeptbild`.`rezeptId`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `rezeptgesamt`  AS SELECT `rezept`.`id` AS `id`, `rezept`.`name` AS `name`, `rezept`.`beschreibung` AS `beschreibung`, `rezept`.`zubereitung` AS `zubereitung`, `rezeptbild`.`url` AS `url` FROM (`rezept` left join `rezeptbild` on(`rezept`.`id` = `rezeptbild`.`rezeptId`)) ;
 
 -- --------------------------------------------------------
 
@@ -210,7 +212,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `zutatgesamt`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `zutatgesamt`  AS SELECT `zutat`.`id` AS `id`, `typ`.`name` AS `Typen`, `zutat`.`name` AS `Zutat`, `zutat`.`beschreibung` AS `beschreibung`, `zutatinventar`.`menge` AS `menge`, `einheit`.`einheitBezeichnung` AS `einheitBezeichnung` FROM (((`zutat` left join `einheit` on(`zutat`.`id` = `einheit`.`zutatId`)) left join `typ` on(`zutat`.`id` = `typ`.`zutatId`)) left join `zutatinventar` on(`zutat`.`id` = `zutatinventar`.`zutatId`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `zutatgesamt`  AS SELECT `zutat`.`id` AS `id`, `typ`.`name` AS `typ`, `zutat`.`name` AS `name`, `zutat`.`beschreibung` AS `beschreibung`, `zutatinventar`.`menge` AS `menge`, `einheit`.`einheitBezeichnung` AS `einheit` FROM (((`zutat` left join `einheit` on(`zutat`.`id` = `einheit`.`zutatId`)) left join `typ` on(`zutat`.`id` = `typ`.`zutatId`)) left join `zutatinventar` on(`zutat`.`id` = `zutatinventar`.`zutatId`)) ;
 
 --
 -- Indizes der exportierten Tabellen
