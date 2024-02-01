@@ -93,13 +93,8 @@ $recipes = DBConnection::readAllRecipes();
     <!-- Modal -->
     <div class="modal fade" id="recipeDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalTitle">Cocktail</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body" id="detailInfo">
-          </div>
+        <div class="modal-content" id="detailInfo">
+          ... hier alles rein
         </div>
       </div>
     </div>
