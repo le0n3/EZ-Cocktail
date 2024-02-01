@@ -24,20 +24,20 @@ class DBConnection
         return self::$connection;
     }
 
-    public static function readFiltertngredient(String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= ""): array
+    public static function readFiltertngredient(String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= "", String $OrderBy = "" , String $Reinfolge): array
     {
         try {
 
             $ingredienz = array();
             $conn = self::getConnection();
 
-            $sql = "SELECT * FROM `zutatgesamt` where Zutat LIKE '%". $Name."%' and menge LIKE '%". $Menge."%' and `einheitBezeichnung` LIKE '%". $Einheit."%' and Typen LIKE '%". $Typ."%' and beschreibung LIKE '%". $Beschribung."%';";
+            $sql = "SELECT * FROM `zutatgesamt` where name LIKE '%". $Name."%' and menge LIKE '%". $Menge."%' and `einheit` LIKE '%". $Einheit."%' and typ LIKE '%". $Typ."%' and beschreibung LIKE '%". $Beschribung."%' ORDER BY ". $OrderBy." ". $Reinfolge.";";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
 
                 while ($row = $result->fetch_assoc()) {
-                    array_push($ingredienz, new Ingredient($row["id"], $row["Zutat"], $row["beschreibung"], $row["menge"], $row["Typen"], $row["einheitBezeichnung"]));
+                    array_push($ingredienz, new Ingredient($row["id"], $row["name"], $row["beschreibung"], $row["menge"], $row["typ"], $row["einheit"]));
                 }
             }
 

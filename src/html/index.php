@@ -1,19 +1,24 @@
 <?php
 include_once("../php/DBConnector.php");
 
-$filterName= ''; $filterMenge= ''; $filterEinheit= ''; $filterTyp= ''; $filterBeschreibung = '';
+$filterName= ''; $filterMenge= ''; $filterEinheit= ''; $filterTyp= ''; $filterBeschreibung = ''; $sortName = ''; $sortOrder = '';
+$sort = $_REQUEST['sort'] ?? ['sort' => 'name', 'order' => 'asc'];
 if (array_key_exists("filter",$_REQUEST)){
 
     $filter = $_REQUEST['filter'] ;
-    $sort = $_REQUEST['sort'] ?? ['sort' => 'Name', 'order' => 'asc'];
     $filterName = array_key_exists("Name",$filter) ? $filter['Name'] : "";
     $filterMenge = array_key_exists("Menge",$filter) ? $filter['Menge'] : "";
     $filterEinheit = array_key_exists("Einheit", $filter) ? $filter['Einheit'] : "";
     $filterTyp = array_key_exists("Typ", $filter) ? $filter['Typ']: "";
     $filterBeschreibung = array_key_exists("Beschreibung", $filter) ? $filter['Beschreibung']: "";
-}
 
-$Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung);
+
+
+}
+$sortName = $sort['sort'];
+$sortOrder = $sort['order'];
+
+$Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
 
 ?>
 
@@ -83,7 +88,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                         <th scope="col" class="table-name">
                             <span>Name</span>
                             <span class="icon
-                                  <?php if ($sort['sort'] == 'Name') {
+                                  <?php if ($sort['sort'] == 'name') {
                                             if ($sort['order'] == 'asc') {
                                                 echo 'icon-expand_more';
                                             } else {
@@ -94,20 +99,22 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                                         }
                                     ?>
                                   sort-submit"
-                                  data-sort="Name"
-                                  data-order="<?php if($sort['sort'] == 'Name') {
+                                  data-sort="name"
+                                  data-order="<?php if($sort['sort'] == 'name') {
                                                     if ($sort['order'] == 'asc') {
                                                         echo 'desc';
                                                     } else {
                                                         echo "asc";
                                                     }
-                                  }  ?>">
+                                  }else  {
+                                      echo 'desc';
+                                  } ?>">
                             </span>
                         </th>
                         <th scope="col" class="table-amount">
                             <span>Menge</span>
                             <span class="icon
-                                  <?php if ($sort['sort'] == 'Menge') {
+                                  <?php if ($sort['sort'] == 'menge') {
                                         if ($sort['order'] == 'asc') {
                                             echo 'icon-expand_more';
                                         } else {
@@ -118,20 +125,22 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                                     }
                                     ?>
                                   sort-submit"
-                                  data-sort="Menge"
-                                  data-order="<?php if($sort['sort'] == 'Menge') {
+                                  data-sort="menge"
+                                  data-order="<?php if($sort['sort'] == 'menge') {
                                       if ($sort['order'] == 'asc') {
                                           echo 'desc';
                                       } else {
                                           echo "asc";
                                       }
+                                  }else  {
+                                      echo 'desc';
                                   } ?>">
                             </span>
                         </th>
                         <th scope="col" class="table-unit">
                             <span>Einheit</span>
                             <span class="icon
-                                  <?php if ($sort['sort'] == 'Einheit') {
+                                  <?php if ($sort['sort'] == 'einheit') {
                                             if ($sort['order'] == 'asc') {
                                                 echo 'icon-expand_more';
                                             } else {
@@ -142,20 +151,22 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                                         }
                                         ?>
                                   sort-submit"
-                                  data-sort="Einheit"
-                                  data-order="<?php if($sort['sort'] == 'Einheit') {
+                                  data-sort="einheit"
+                                  data-order="<?php if($sort['sort'] == 'einheit') {
                                                     if ($sort['order'] == 'asc') {
                                                         echo 'desc';
                                                     } else {
                                                         echo "asc";
                                                     }
-                                                } ?>">
+                                                }else  {
+                                      echo 'desc';
+                                  } ?>">
                             </span>
                         </th>
                         <th scope="col" class="table-type">
                             <span>Typ</span>
                             <span class="icon
-                                  <?php if ($sort['sort'] == 'Typ') {
+                                  <?php if ($sort['sort'] == 'typ') {
                                         if ($sort['order'] == 'asc') {
                                             echo 'icon-expand_more';
                                         } else {
@@ -166,20 +177,22 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                                     }
                                     ?>
                                   sort-submit"
-                                  data-sort="Typ"
-                                  data-order="<?php if($sort['sort'] == 'Typ') {
+                                  data-sort="typ"
+                                  data-order="<?php if($sort['sort'] == 'typ') {
                                                     if ($sort['order'] == 'asc') {
                                                         echo 'desc';
                                                     } else {
                                                         echo "asc";
                                                     }
-                                              }?>">
+                                              }else  {
+                                      echo 'desc';
+                                  }?>">
                             </span>
                         </th>
                         <th scope="col" class="table-final-col">
                             <span>Beschreibung</span>
                             <span class="icon
-                                  <?php if ($sort['sort'] == 'Beschreibung') {
+                                  <?php if ($sort['sort'] == 'beschreibung') {
                                             if ($sort['order'] == 'asc') {
                                                 echo 'icon-expand_more';
                                             } else {
@@ -190,14 +203,16 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                                         }
                                         ?>
                                   sort-submit"
-                                  data-sort="Beschreibung"
-                                  data-order="<?php if($sort['sort'] == 'Beschreibung') {
+                                  data-sort="beschreibung"
+                                  data-order="<?php if($sort['sort'] == 'beschreibung') {
                                                     if ($sort['order'] == 'asc') {
                                                         echo 'desc';
                                                     } else {
                                                         echo "asc";
                                                     }
-                                              }?>">
+                                              }else  {
+                                      echo 'desc';
+                                  }?>">
                             </span>
                         </th>
                     </tr>
