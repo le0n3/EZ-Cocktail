@@ -18,6 +18,9 @@ include_once("../php/Rezept/recipeIngedeans.php");
 </div>
 <div class="modal-body">
     <div>
+        <p><?php echo $recipe->getDescription()?></p>
+    </div>
+    <div>
         <ul>
             <?php
 
@@ -28,6 +31,6 @@ include_once("../php/Rezept/recipeIngedeans.php");
         </ul>
     </div>
     <div>
-        <p>zubereitung hier</p>
+        <p><?php echo $recipe->getZubereitung()?></p>
     </div>
 </div>

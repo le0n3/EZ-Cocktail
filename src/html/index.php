@@ -1,11 +1,16 @@
 <?php
 include_once("../php/DBConnector.php");
 
-$filterName = array_key_exists("Name",$_REQUEST) ? $_REQUEST['Name'] : "";
-$filterMenge = array_key_exists("Menge",$_REQUEST) ? $_REQUEST['Menge'] : "";
-$filterEinheit = array_key_exists("Einheit", $_REQUEST) ? $_REQUEST['Einheit'] : "";
-$filterTyp = array_key_exists("Typ", $_REQUEST) ? $_REQUEST['Typ']: "";
-$filterBeschreibung = array_key_exists("Beschreibung", $_REQUEST) ? $_REQUEST['Beschreibung']: "";
+$filterName= ''; $filterMenge= ''; $filterEinheit= ''; $filterTyp= ''; $filterBeschreibung = '';
+if (array_key_exists("filter",$_REQUEST)){
+
+    $filter = $_REQUEST['filter'] ;
+    $filterName = array_key_exists("Name",$filter) ? $filter['Name'] : "";
+    $filterMenge = array_key_exists("Menge",$filter) ? $filter['Menge'] : "";
+    $filterEinheit = array_key_exists("Einheit", $filter) ? $filter['Einheit'] : "";
+    $filterTyp = array_key_exists("Typ", $filter) ? $filter['Typ']: "";
+    $filterBeschreibung = array_key_exists("Beschreibung", $filter) ? $filter['Beschreibung']: "";
+}
 
 $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung);
 

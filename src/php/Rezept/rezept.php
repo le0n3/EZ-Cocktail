@@ -5,12 +5,14 @@ class Recipe
     private string $Id;
     private string $Name;
     private string $Beschreibung;
+    private string $Zubereitung;
     private string $Url;
 
-    public function __construct(string $Id, string $Name, string $Beschreibung, string $Url) {
+    public function __construct(string $Id, string $Name, string $Beschreibung, string $Zubereitung, string $Url) {
         $this->Id = $Id;
         $this->Name = $Name;
         $this->Beschreibung = $Beschreibung;
+        $this->Zubereitung = $Zubereitung;
         $this->Url = $Url;
     }
 
@@ -32,6 +34,16 @@ class Recipe
     public function getName()
     {
         return $this->Name;
+    }
+
+    public  function getDescription()
+    {
+        return $this->Beschreibung;
+    }
+
+    public function  getZubereitung()
+    {
+        return $this->Zubereitung;
     }
     
 }

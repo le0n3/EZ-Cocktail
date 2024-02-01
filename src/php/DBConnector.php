@@ -70,7 +70,7 @@ class DBConnection
             if ($result->num_rows > 0) {
 
                 while ($row = $result->fetch_assoc()) {
-                    array_push($recipes, new Recipe($row["id"], $row["name"], $row["beschreibung"], $row["url"]));
+                    array_push($recipes, new Recipe($row["id"], $row["name"], $row["beschreibung"], $row["zubereitung"], $row["url"]));
                 }
             }
 
@@ -93,12 +93,12 @@ class DBConnection
                 if ($result->num_rows > 0) {
 
                     while ($row = $result->fetch_assoc()) {
-                        $recipe = new Recipe($row["id"], $row["name"], $row["beschreibung"], $row["url"]);
+                        $recipe = new Recipe($row["id"], $row["name"], $row["beschreibung"], $row["zubereitung"], $row["url"]);
                     }
                 }
             }
             else{
-                return new Recipe("","","");
+                return new Recipe("","","","", "");
             }
 
         } catch (Exception $e) {
