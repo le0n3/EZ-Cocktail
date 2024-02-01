@@ -64,7 +64,7 @@ class DBConnection
             $recipes = array();
             $conn = self::getConnection();
 
-            $sql = "SELECT * FROM `rrzeptgesamt`";
+            $sql = "SELECT * FROM `rezeptgesamt`";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -87,7 +87,7 @@ class DBConnection
                 $recipe = null;
                 $conn = self::getConnection();
 
-                $sql = "SELECT * FROM `rrzeptgesamt` Where id ='" . $id . "';";
+                $sql = "SELECT * FROM `rezeptgesamt` Where id ='" . $id . "';";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {

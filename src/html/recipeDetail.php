@@ -13,37 +13,21 @@ include_once("../php/Rezept/recipeIngedeans.php");
 
 
 <div class="modal-header">
-    <h5 class="modal-title" id="modalTitle">Gandalfs Elixier</h5>
+    <h5 class="modal-title" id="modalTitle"><?php echo $recipe->getName()?></h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
     <div>
-        <p>beschreibung hier</p>
-    </div>
-    <div>
         <ul>
-            <li>Fliegenpilz</li>
-            <li>Mammutsamen</li>
-            <li>Hobbitkraut</li>
-            <li>Whiskey</li>
+            <?php
+
+            foreach ($zutaten as $zutat) {
+                echo $zutat->GenerateBulletpoint();
+            }
+            ?>
         </ul>
     </div>
     <div>
         <p>zubereitung hier</p>
     </div>
-<div>
-    <p><?php echo $recipe->getName()?></p>
-</div>
-<div>
-    <ul>
-        <?php
-
-            foreach ($zutaten as $zutat) {
-                echo $zutat->GenerateBulletpoint();
-            }
-        ?>
-    </ul>
-</div>
-<div>
-    <p>zubereitung hier</p>
 </div>
