@@ -29,6 +29,9 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
     <link href="../css/index.css" rel="stylesheet">
     <link href="../css/topBar.css" rel="stylesheet">
     <link href="../css/ezCockTail.css" rel="stylesheet">
+
+    <!-- Custom JS -->
+      <script src="../js/index.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -65,7 +68,8 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
           </div>
           <div class="table-container w-100 m-5 shadow rounded">
             <table class="table bg-body table-striped">
-                <thead class="bg-light sticky-top top-0">
+                <form action="?" autocomplete="off" id="main-table" method="get">
+                    <thead class="bg-light sticky-top top-0">
                     <tr>
                         <th scope="col"><span class="icon icon-add_circle" title="Eintrag hinzufügen"></span></th>
                         <th scope="col" class="table-name"><span>Name</span><span class="icon icon-expand_more text-primary"></span></th>
@@ -76,15 +80,17 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                     </tr>
                     <tr>
                         <th scope="col" class="table-icon">
-                           <a href="index.php"> <span class="icon icon-close top-1" title="Filter entfernen"></span></a>
+                            <a href="index.php"><span class="icon icon-close top-1" title="Filter entfernen"></span></a>
                         </th>
-                        <th scope="col" class="table-name"><input type="text" value="<?php echo $filterName; ?>"></th>
-                        <th scope="col" class="table-amount"><input type="text" value="<?php echo $filterMenge; ?>"></th>
-                        <th scope="col" class="table-unit"><input type="text" value="<?php echo $filterEinheit; ?>"></th>
-                        <th scope="col" class="table-type"><input type="text" value="<?php echo $filterTyp; ?>"></th>
-                        <th scope="col" class="table-final-col"><input type="text" value="<?php echo $filterBeschreibung; ?>"></th>
+                        <th scope="col" class="table-name"><input type="text" name="filter[Name]" value="<?php echo $filterName; ?>"></th>
+                        <th scope="col" class="table-amount"><input type="text" name="filter[Menge]" value="<?php echo $filterMenge; ?>"></th>
+                        <th scope="col" class="table-unit"><input type="text" name="filter[Einheit]" value="<?php echo $filterEinheit; ?>"></th>
+                        <th scope="col" class="table-type"><input type="text" name="filter[Typ]" value="<?php echo $filterTyp; ?>"></th>
+                        <th scope="col" class="table-final-col"><input type="text" name="filter[Beschreibung]" value="<?php echo $filterBeschreibung; ?>"></th>
                     </tr>
-                </thead>
+                    </thead>
+                </form>
+
                 <tbody>
 
                 <?php
