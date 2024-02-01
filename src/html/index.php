@@ -84,7 +84,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                     <div class="d-none"><input type="hidden" name="sort[order]" id="order-filter"></div>
                     <thead class="bg-light sticky-top top-0">
                     <tr>
-                        <th scope="col"><span class="icon icon-add_circle" title="Eintrag hinzufügen"></span></th>
+                        <th scope="col"><span class="icon icon-add_circle" title="Eintrag hinzufügen" id="addIngredient" data-bs-toggle="modal" data-bs-target="#ingredientModal"></span></th>
                         <th scope="col" class="table-name">
                             <span>Name</span>
                             <span class="icon
@@ -242,6 +242,14 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
 
                 </tbody>
               </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ingredientModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="detailInfo">
+            </div>
         </div>
     </div>
    </body>
