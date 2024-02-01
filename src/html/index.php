@@ -5,6 +5,7 @@ $filterName= ''; $filterMenge= ''; $filterEinheit= ''; $filterTyp= ''; $filterBe
 if (array_key_exists("filter",$_REQUEST)){
 
     $filter = $_REQUEST['filter'] ;
+    $sort = $_REQUEST['sort'] ?? ['sort' => 'Name', 'order' => 'asc'];
     $filterName = array_key_exists("Name",$filter) ? $filter['Name'] : "";
     $filterMenge = array_key_exists("Menge",$filter) ? $filter['Menge'] : "";
     $filterEinheit = array_key_exists("Einheit", $filter) ? $filter['Einheit'] : "";
@@ -74,14 +75,131 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
           <div class="table-container w-100 m-5 shadow rounded">
             <table class="table bg-body table-striped">
                 <form action="?" autocomplete="off" id="main-table" method="get">
+                    <div class="d-none"><input type="hidden" name="sort[sort]" id="sort-filter"></div>
+                    <div class="d-none"><input type="hidden" name="sort[order]" id="order-filter"></div>
                     <thead class="bg-light sticky-top top-0">
                     <tr>
                         <th scope="col"><span class="icon icon-add_circle" title="Eintrag hinzufügen"></span></th>
-                        <th scope="col" class="table-name"><span>Name</span><span class="icon icon-expand_more text-primary"></span></th>
-                        <th scope="col" class="table-amount"><span>Menge</span><span class="icon icon-unfold_more"></span></th>
-                        <th scope="col" class="table-unit"><span>Einheit</span><span class="icon icon-unfold_more"></span></th>
-                        <th scope="col" class="table-type"><span>Typ</span><span class="icon icon-unfold_more"></span></th>
-                        <th scope="col" class="table-final-col"><span>Beschreibung</span><span class="icon icon-unfold_more"></span></th>
+                        <th scope="col" class="table-name">
+                            <span>Name</span>
+                            <span class="icon
+                                  <?php if ($sort['sort'] == 'Name') {
+                                            if ($sort['order'] == 'asc') {
+                                                echo 'icon-expand_more';
+                                            } else {
+                                                echo 'icon-expand_less';
+                                            }
+                                        } else {
+                                            echo 'icon-unfold_more';
+                                        }
+                                    ?>
+                                  sort-submit"
+                                  data-sort="Name"
+                                  data-order="<?php if($sort['sort'] == 'Name') {
+                                                    if ($sort['order'] == 'asc') {
+                                                        echo 'desc';
+                                                    } else {
+                                                        echo "asc";
+                                                    }
+                                  }  ?>">
+                            </span>
+                        </th>
+                        <th scope="col" class="table-amount">
+                            <span>Menge</span>
+                            <span class="icon
+                                  <?php if ($sort['sort'] == 'Menge') {
+                                        if ($sort['order'] == 'asc') {
+                                            echo 'icon-expand_more';
+                                        } else {
+                                            echo 'icon-expand_less';
+                                        }
+                                    } else {
+                                        echo 'icon-unfold_more';
+                                    }
+                                    ?>
+                                  sort-submit"
+                                  data-sort="Menge"
+                                  data-order="<?php if($sort['sort'] == 'Menge') {
+                                      if ($sort['order'] == 'asc') {
+                                          echo 'desc';
+                                      } else {
+                                          echo "asc";
+                                      }
+                                  } ?>">
+                            </span>
+                        </th>
+                        <th scope="col" class="table-unit">
+                            <span>Einheit</span>
+                            <span class="icon
+                                  <?php if ($sort['sort'] == 'Einheit') {
+                                            if ($sort['order'] == 'asc') {
+                                                echo 'icon-expand_more';
+                                            } else {
+                                                echo 'icon-expand_less';
+                                            }
+                                        } else {
+                                            echo 'icon-unfold_more';
+                                        }
+                                        ?>
+                                  sort-submit"
+                                  data-sort="Einheit"
+                                  data-order="<?php if($sort['sort'] == 'Einheit') {
+                                                    if ($sort['order'] == 'asc') {
+                                                        echo 'desc';
+                                                    } else {
+                                                        echo "asc";
+                                                    }
+                                                } ?>">
+                            </span>
+                        </th>
+                        <th scope="col" class="table-type">
+                            <span>Typ</span>
+                            <span class="icon
+                                  <?php if ($sort['sort'] == 'Typ') {
+                                        if ($sort['order'] == 'asc') {
+                                            echo 'icon-expand_more';
+                                        } else {
+                                            echo 'icon-expand_less';
+                                        }
+                                    } else {
+                                        echo 'icon-unfold_more';
+                                    }
+                                    ?>
+                                  sort-submit"
+                                  data-sort="Typ"
+                                  data-order="<?php if($sort['sort'] == 'Typ') {
+                                                    if ($sort['order'] == 'asc') {
+                                                        echo 'desc';
+                                                    } else {
+                                                        echo "asc";
+                                                    }
+                                              }?>">
+                            </span>
+                        </th>
+                        <th scope="col" class="table-final-col">
+                            <span>Beschreibung</span>
+                            <span class="icon
+                                  <?php if ($sort['sort'] == 'Beschreibung') {
+                                            if ($sort['order'] == 'asc') {
+                                                echo 'icon-expand_more';
+                                            } else {
+                                                echo 'icon-expand_less';
+                                            }
+                                        } else {
+                                            echo 'icon-unfold_more';
+                                        }
+                                        ?>
+                                  sort-submit"
+                                  data-sort="Beschreibung"
+                                  data-order="<?php if($sort['sort'] == 'Beschreibung') {
+                                                    if ($sort['order'] == 'asc') {
+                                                        echo 'desc';
+                                                    } else {
+                                                        echo "asc";
+                                                    }
+                                              }?>">
+                            </span>
+                        </th>
                     </tr>
                     <tr>
                         <th scope="col" class="table-icon">
@@ -105,8 +223,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                     echo $ingredient->generateIngredientLine();
                 }
 
-
-        ?>
+                ?>
 
                 </tbody>
               </table>
