@@ -1,8 +1,11 @@
 <?php
 include_once("../php/DBConnector.php");
 
-$filterName= ''; $filterMenge= ''; $filterEinheit= ''; $filterTyp= ''; $filterBeschreibung = ''; $sortName = ''; $sortOrder = '';
+$filterName= ''; $filterMenge= ''; $filterEinheit= ''; $filterTyp= ''; $filterBeschreibung = '';
 $sort = $_REQUEST['sort'] ?? ['sort' => 'name', 'order' => 'asc'];
+$sortName = $sort['sort'] != "" ? $sort['sort']: "name"  ;
+$sortOrder = $sort['order'] != "" ? $sort['order']: "desc";
+
 if (array_key_exists("filter",$_REQUEST)){
 
     $filter = $_REQUEST['filter'] ;
@@ -11,12 +14,10 @@ if (array_key_exists("filter",$_REQUEST)){
     $filterEinheit = array_key_exists("Einheit", $filter) ? $filter['Einheit'] : "";
     $filterTyp = array_key_exists("Typ", $filter) ? $filter['Typ']: "";
     $filterBeschreibung = array_key_exists("Beschreibung", $filter) ? $filter['Beschreibung']: "";
-
-
-
 }
-$sortName = $sort['sort'];
-$sortOrder = $sort['order'];
+
+
+var_dump($sort);
 
 $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
 
