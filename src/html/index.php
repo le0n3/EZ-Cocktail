@@ -15,12 +15,9 @@ if (array_key_exists("filter",$_REQUEST)){
     $filterTyp = array_key_exists("Typ", $filter) ? $filter['Typ']: "";
     $filterBeschreibung = array_key_exists("Beschreibung", $filter) ? $filter['Beschreibung']: "";
 }
-
-
-var_dump($sort);
-
+DBConnection::createIngredient(new Ingredient("", "Test", "Das ist ein Test","100", "Whiskey", "ml"), "Milliliter");
 $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
-
+var_dump($sort);
 ?>
 
 <!doctype html>

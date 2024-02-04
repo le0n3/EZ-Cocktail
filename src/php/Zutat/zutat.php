@@ -20,6 +20,37 @@ class Ingredient
         $this->unit = $unit;
     }
 
+    // getters
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getIngredient()
+    {
+        return $this->ingredient;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
     public function generateIngredientLine()
     {
         return "<tr>

@@ -1,3 +1,6 @@
+
+
+
 <div class="modal-header">
     <h5 class="modal-title" id="modalTitle">Zutat hinzufügen</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -14,6 +17,10 @@
             <div class="col">
                 <label for="Menge" class="form-label">Menge</label>
                 <input type="text" class="form-control" id="Menge" name="Menge">
+            </div>
+            <div class="col">
+                <label for="EinheitKürzel" class="form-label">Einheit Kürzel</label>
+                <input type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel">
             </div>
             <div class="col">
                 <label for="Einheit" class="form-label">Einheit</label>

@@ -31,13 +31,14 @@ class DBConnection
             $ingredienz = array();
             $conn = self::getConnection();
 
-            $sql = "SELECT * FROM `zutatgesamt` where name LIKE '%". $Name."%' and menge LIKE '%". $Menge."%' and `einheit` LIKE '%". $Einheit."%' and typ LIKE '%". $Typ."%' and beschreibung LIKE '%". $Beschribung."%' ORDER BY ". $OrderBy." ". $Reinfolge.";";
+            $sql = "SELECT * FROM `zutatgesamt` where name LIKE '%". $Name."%' and (menge LIKE '%". $Menge."%' or menge is null)  and `einheit` LIKE '%". $Einheit."%' and typ LIKE '%". $Typ."%' and beschreibung LIKE '%". $Beschribung."%' ORDER BY ". $OrderBy." ". $Reinfolge.";";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
 
                 while ($row = $result->fetch_assoc()) {
-                    array_push($ingredienz, new Ingredient($row["id"], $row["name"], $row["beschreibung"], $row["menge"], $row["typ"], $row["einheit"]));
+
+                    array_push($ingredienz, new Ingredient($row["id"], $row["name"], $row["beschreibung"],array_key_exists('menge', $row)? $row["menge"]?? 0 : 0, $row["typ"], $row["einheit"]));
                 }
             }
 
@@ -45,12 +46,88 @@ class DBConnection
             return $ingredienz;
         }
         return $ingredienz;
-//$conn->close();
     }
 
-    public static function createIngredient($ingredeant) {
+    public static function getIngredientById($id)
+    {
+        try {
+            $conn = self::getConnection();
+            $sql = "SELECT * FROM `zutatgesamt` WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-       //TODO: erstellen des Create Befehles
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                return new Ingredient($row["id"], $row["name"], $row["beschreibung"], array_key_exists('menge', $row) ? $row["menge"] ?? 0 : 0, $row["typ"], $row["einheit"]);
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            return null;
+        }
+    }
+
+    public static function createIngredient(Ingredient $ingredeant, String $unitLong) {
+        $conn = self::getConnection();
+
+        $smt = $conn->prepare("IF (SELECT COUNT(*) FROM typ WHERE name = ?) = 0 THEN 
+                    INSERT INTO typ (name) VALUES (?);
+                END IF;");
+
+        if(!$smt){
+            echo "Error Prepareing Statment ";
+            return;
+        }
+
+        $var1 = $ingredeant->getType();
+
+        $smt->bind_param("ss", $var1, $var1);
+        if(!$smt->execute()){
+            echo "Error Creating record ". $smt->error;
+            return;
+        }
+
+
+        $smt2 = $conn->prepare("IF (SELECT COUNT(*) FROM einheit WHERE name = ?) = 0 THEN
+                    INSERT INTO einheit (name, einheitkuerzel) VALUES (?,?);
+                END IF;");
+
+        if(!$smt2){
+            echo "Error Prepareing Statment ";
+            return;
+        }
+
+
+        $var2 = $ingredeant->getUnit();
+
+        $smt2->bind_param("sss", $unitLong, $unitLong, $var2);
+        if(!$smt2->execute()){
+            echo "Error Creating record ". $smt2->error;
+            return;
+        }
+
+
+        $smt3 = $conn->prepare("insert into zutat ( name, beschreibung, typId, einheitId) values (?,?,
+                                                                  (Select id from typ where typ.name =?),
+                                                                  (Select id from einheit where einheit.name = ?));");
+        if(!$smt3){
+            echo "Error Prepareing Statment ";
+            return;
+        }
+
+        $var1= $ingredeant->getIngredient();
+        $var2 = $ingredeant->getDescription();
+        $var3 = $ingredeant->getType();
+
+        $smt3->bind_param("ssss", $var1, $var2, $var3, $unitLong);
+
+        if(!$smt3->execute()){
+            echo "Error Creating record ". $smt3->error;
+            return;
+        }
+
     }
 
     public  static function updateIngredient($ingredient)
@@ -115,16 +192,16 @@ class DBConnection
 
                 $conn = self::getConnection();
 
-                $sql = "SELECT zutat_rezept.id, einheit.einheitBezeichnung,zutat_rezept.menge, zutat.name FROM `zutat_rezept`
+                $sql = "SELECT zutat_rezept.id, einheit.einheitkuerzel ,zutat_rezept.menge, zutat.name FROM `zutat_rezept`
                         left JOIN zutat on zutat_rezept.zutatId = zutat.id
-                        left join einheit on zutat.id = einheit.zutatId
+                        left join einheit on zutat.einheitId = einheit.id
                     where rezeptId = '" . $id . "';";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
 
                     while ($row = $result->fetch_assoc()) {
-                        array_push($recipeIngedens, new RezeptZutaten($row["name"], $row["einheitBezeichnung"], $row["menge"]));
+                        array_push($recipeIngedens, new RezeptZutaten($row["name"], $row["einheitkuerzel"], $row["menge"]));
                     }
                 }
             }
