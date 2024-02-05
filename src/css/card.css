@@ -19,8 +19,6 @@
     overflow-y: auto;
     width: 95vw;
 }
-
-.filter-container {
-    overflow-y: auto;
-    width: 95vw;
+#add_entry_card img {
+    opacity: 0.3;
 }
