@@ -45,5 +45,9 @@ class Recipe
     {
         return $this->Zubereitung;
     }
-    
+
+    public function  getId()
+    {
+        return $this->Id;
+    }
 }

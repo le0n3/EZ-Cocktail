@@ -70,6 +70,10 @@ class DBConnection
     }
 
     public static function createIngredient(Ingredient $ingredeant, String $unitLong) {
+        if(self::CheckIfZutatAllreadyExists()){
+            return;
+        }
+
         $conn = self::getConnection();
 
         $smt = $conn->prepare("IF (SELECT COUNT(*) FROM typ WHERE name = ?) = 0 THEN 
@@ -130,10 +134,72 @@ class DBConnection
 
     }
 
-    public  static function updateIngredient($ingredient)
+    public  static function updateIngredient($ingredeant)
     {
-        //TODO: erstellen des Update Befehls
+        if(!self::CheckIfZutatAllreadyExists()){
+            return;
+        }
+
+        $conn = self::getConnection();
+
+        $smt = $conn->prepare("IF (SELECT COUNT(*) FROM typ WHERE name = ?) = 0 THEN 
+                    INSERT INTO typ (name) VALUES (?);
+                END IF;");
+
+        if(!$smt){
+            echo "Error Prepareing Statment ";
+            return;
+        }
+
+        $var1 = $ingredeant->getType();
+
+        $smt->bind_param("ss", $var1, $var1);
+        if(!$smt->execute()){
+            echo "Error Creating record ". $smt->error;
+            return;
+        }
+
+
+        $smt2 = $conn->prepare("IF (SELECT COUNT(*) FROM einheit WHERE name = ?) = 0 THEN
+                    INSERT INTO einheit (name, einheitkuerzel) VALUES (?,?);
+                END IF;");
+
+        if(!$smt2){
+            echo "Error Prepareing Statment ";
+            return;
+        }
+
+
+        $var2 = $ingredeant->getUnit();
+
+        $smt2->bind_param("sss", $unitLong, $unitLong, $var2);
+        if(!$smt2->execute()){
+            echo "Error Creating record ". $smt2->error;
+            return;
+        }
+
+        $smt3 = $conn->prepare("UPDATE `zutat` SET `name`= ?,`beschreibung`= ?,
+                   `typId`=  (Select id from typ where typ.name = ?),
+                    `einheitId`=(Select id from einheit where einheit.name = ?)  WHERE `id` = ?");
+        if(!$smt3){
+            echo "Error Prepareing Statment ";
+            return;
+        }
+
+        $var1= $ingredeant->getIngredient();
+        $var2 = $ingredeant->getDescription();
+        $var3 = $ingredeant->getType();
+        $var4 = $ingredeant->getId();
+
+        $smt3->bind_param("ssssi", $var1, $var2, $var3, $unitLong, $var4);
+
+        if(!$smt3->execute()){
+            echo "Error Creating record ". $smt3->error;
+            return;
+        }
+
     }
+
     public static function readAllRecipes()
     {
         try {
@@ -192,7 +258,7 @@ class DBConnection
 
                 $conn = self::getConnection();
 
-                $sql = "SELECT zutat_rezept.id, einheit.einheitkuerzel ,zutat_rezept.menge, zutat.name FROM `zutat_rezept`
+                $sql = "SELECT zutat_rezept.id, einheit.einheitkuerzel ,zutat_rezept.menge, zutat.name, zutat.id as ZutatID FROM `zutat_rezept`
                         left JOIN zutat on zutat_rezept.zutatId = zutat.id
                         left join einheit on zutat.einheitId = einheit.id
                     where rezeptId = '" . $id . "';";
@@ -201,7 +267,7 @@ class DBConnection
                 if ($result->num_rows > 0) {
 
                     while ($row = $result->fetch_assoc()) {
-                        array_push($recipeIngedens, new RezeptZutaten($row["name"], $row["einheitkuerzel"], $row["menge"]));
+                        array_push($recipeIngedens, new RezeptZutaten($row["name"], $row["einheitkuerzel"], $row["menge"], $row["id"]));
                     }
                 }
             }
@@ -211,4 +277,82 @@ class DBConnection
         return $recipeIngedens;
     }
 
+    public static function getRecepiesByIngredeans(): array
+    {
+        //TODO: Select Befehl erstellen
+        return array();
+    }
+
+    public static function CreatRecipe(Recipe $recipe)
+    {
+        if (self::CheckIfRecipeAllreadyExists($recipe)){
+            return;
+        }
+        //TODO: Erstellen eines Rezeptes
+    }
+
+    public static function RrcepieDonn(Int $RecepieID)
+    {
+        $conn = self::getConnection();
+        $ingredeans = self::getIngredensByRecipeId($RecepieID);
+        foreach ($ingredeans as $ingeredeant){
+
+            $smt = $conn->prepare("UPDATE `zutatinventar` SET `menge`=(SELECT zutatinventar.menge From zutatinventar WHERE id = ?) - ? WHERE `id` = ?");
+
+            if(!$smt){
+                echo "Error Prepareing Statment ";
+            }
+
+            $var1 = $ingeredeant->getID();
+            $var2 = $ingeredeant->getAmount();
+
+            $smt->bind_param("iii", $var1, $var2, $var1);
+            if(!$smt->execute()){
+                echo "Error Creating record ". $smt->error;
+            }
+        }
+
+    }
+
+    private static function CheckIfZutatAllreadyExists(Ingredient $ingredient) : bool
+    {
+        try {
+            $conn = self::getConnection();
+            $sql = "SELECT * FROM `zutatgesamt` WHERE `name`  = ?";
+            $stmt = $conn->prepare($sql);
+            $name = $ingredient->getIngredient() ;
+            $stmt->bind_param("i", $name);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                return true;
+            } else {
+                return false ;
+            }
+        } catch (Exception $e) {
+            return false ;
+        }
+    }
+
+    private static function CheckIfRecipeAllreadyExists(Recipe $rezept) : bool
+    {
+        try {
+            $conn = self::getConnection();
+            $sql = "SELECT * FROM `rezeptgesamt` WHERE `name`  = ?";
+            $stmt = $conn->prepare($sql);
+            $name = $rezept->getName();
+            $stmt->bind_param("i", $name);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                return true;
+            } else {
+                return false ;
+            }
+        } catch (Exception $e) {
+            return false ;
+        }
+    }
 }
