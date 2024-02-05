@@ -235,8 +235,18 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                 <?php
 
                 foreach($Ingredients as $ingredient)
-                {
-                    echo $ingredient->generateIngredientLine();
+                {?>
+
+                    <tr>
+                        <td class="table-icon" title="Eintrag bearbeiten"><span class="icon icon-edit editIngredient" data-bs-toggle="modal" data-bs-target="#ingredientModal" data-id='<?php echo $ingredient->getId(); ?>'></span></td>
+                        <td class="table-name" title="<?php echo $ingredient->getIngredient(); ?>"><span><?php echo $ingredient->getIngredient(); ?></span></td>
+                        <td class="table-amount" title="<?php echo $ingredient->getQuantity(); ?>"><span><?php echo $ingredient->getQuantity(); ?></span></td>
+                        <td class="table-unit" title="<?php echo $ingredient->getUnit(); ?>"><span><?php echo $ingredient->getUnit(); ?></span></td>
+                        <td class="table-type" title="<?php echo $ingredient->getType(); ?>"><span><?php echo $ingredient->getType(); ?></span></td>
+                        <td class="table-description" title="<?php echo $ingredient->getDescription(); ?>"><span><?php echo $ingredient->getDescription(); ?></span></td>
+                    </tr>
+
+                    <?php
                 }
 
                 ?>
@@ -260,22 +270,21 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                             <div class="col">
                                 <label for="zutatId" class="form-label">Zutat</label>
                                 <select class="form-control" id="zutatId" name="zutatId">
-                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
-                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
-                                    <option value="hier die ID rein Leon" selected>der ist ausgewählt weil selected</option>
-                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
-                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
-                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
-                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
-                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
-                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <?php
+                                        //Das ist mist so komme ich nicht an die Zutat ID und ich kann den Wahl schalter nicht auslehsen den ich zwingend für das neu erstellen brauche zudem muss die Id ü
+                                    foreach($Ingredients as $ingredient)
+                                    {?>
+
+                                        <option value="<?php echo $ingredient->getIngredient(); ?>"><?php echo $ingredient->getIngredient(); ?></option>
+
+                                        <?php
+                                    }
+
+                                    ?>
                                 </select>
                             </div>
                         </div>
-                        <div class="col">
-                            <label for="Menge" class="form-label">Menge</label>
-                            <input type="text" class="form-control" id="Menge" name="Menge">
-                        </div>
+
                     </div>
                     <div id="detailInfo"></div>
                 </div>

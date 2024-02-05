@@ -2,23 +2,27 @@
 // hier anhand einer zutatId die werte für Einheiten usw anzeigen, aber disabled lassen
 include_once("../php/DBConnector.php");
 $myIngredient = null;
-    if(array_key_exists('MeineZutatId', $_REQUEST)){
-        //muss prüfen ob eine myId gesetzt ist, statt rezeptId
-        $myIngredient = DBConnection::getMyIngredientById($_REQUEST['MeineZutatId']);
+    if(array_key_exists('id', $_REQUEST)){
+        $myIngredient = DBConnection::getIngredientById($_REQUEST['id']);
     }
 ?>
 
 
 <form action="../php/ManipulteMyIngredients.php" autocomplete="off" method="post">
     <?php if ($myIngredient != null) {
-        echo '<input type="hidden" name="MeineZutatId" value="'.$_REQUEST['MeineZutatId'].'">';
+        echo '<input type="hidden" name="MeineZutatId" value="'.$_REQUEST['id'].'">';
     } ?>
-
         <div class="container">
             <div class="row mb-2">
                 <div class="col">
+                    <label for="Menge" class="form-label">Menge</label>
+                    <input type="text" class="form-control" id="Menge" name="Menge" value="<?php echo !is_null($myIngredient) ? $myIngredient->getQuantity(): ''; ?>">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
                     <label for="EinheitKürzel" class="form-label">Einheit Kürzel</label>
-                    <input disabled type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel">
+                    <input disabled type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel" value="<?php echo !is_null($myIngredient) ? $myIngredient->getLongUnit(): ''; ?>">
                 </div>
                 <div class="col">
                     <label for="Einheit" class="form-label">Einheit</label>

@@ -25,12 +25,8 @@ $ingredient = null;
             </div>
             <div class="row mb-2">
                 <div class="col">
-                    <label for="Menge" class="form-label">Menge</label>
-                    <input type="text" class="form-control" id="Menge" name="Menge" value="<?php echo !is_null($ingredient) ? $ingredient->getQuantity(): ''; ?>">
-                </div>
-                <div class="col">
                     <label for="EinheitKürzel" class="form-label">Einheit Kürzel</label>
-                    <input type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel">
+                    <input type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel" value="<?php echo !is_null($ingredient) ? $ingredient->getLongUnit(): ''; ?>">
                 </div>
                 <div class="col">
                     <label for="Einheit" class="form-label">Einheit</label>
