@@ -249,7 +249,36 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
     <!-- Modal -->
     <div class="modal fade" id="ingredientModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" id="detailInfo">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Zutat hinzufügen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="zutatId" class="form-label">Zutat</label>
+                                <select class="form-control" id="zutatId" name="zutatId">
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon" selected>der ist ausgewählt weil selected</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="Menge" class="form-label">Menge</label>
+                            <input type="text" class="form-control" id="Menge" name="Menge">
+                        </div>
+                    </div>
+                    <div id="detailInfo"></div>
+                </div>
             </div>
         </div>
     </div>
