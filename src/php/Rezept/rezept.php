@@ -18,8 +18,7 @@ class Recipe
 
     public function generateRecepeCard()
     {
-        return "<div class=\"cards-container m-auto shadow rounded bg-light\">
-            <div class=\"card openDetails\" data-bs-toggle=\"modal\" data-bs-target=\"#recipeDetail\" data-id=\"". $this->Id ."\">
+        return "<div class=\"card openDetails\" data-bs-toggle=\"modal\" data-bs-target=\"#recipeDetail\" data-id=\"". $this->Id ."\">
                 <img src=\"". $this->Url ."\" class=\"card-img-top\" alt=\"cooler-gandalf\">
                 <div class=\"card-body\">
                   <h5 class=\"card-title\">". $this->Name ."</h5>
@@ -27,8 +26,7 @@ class Recipe
                   ". $this->Beschreibung ."
                   </div>
                 </div>
-              </div>
-            </div>";
+              </div>";
     }
 
     public function getName()

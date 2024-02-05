@@ -81,12 +81,23 @@ $recipes = DBConnection::readAllRecipes();
 <!--            </div>-->
           </div>
         <div class="row">
+            <div class="cards-container m-auto shadow rounded bg-light">
+
+                <div class="card" id="add_entry_card" data-bs-toggle="modal" data-bs-target="#recipeAdd">
+                <img src="../Images/plus.png" class="card-img-top" alt="add">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <div class="description-container">
+                    </div>
+                </div>
+            </div>
             <?php
             foreach($recipes as $recipe)
             {
                 echo $recipe->generateRecepeCard();
             }
             ?>
+            </div>
         </div>
       </div>
 
@@ -96,6 +107,47 @@ $recipes = DBConnection::readAllRecipes();
         <div class="modal-content" id="detailInfo">
         </div>
       </div>
+    </div>
+
+    <div class="modal fade" id="recipeAdd" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="../php/recipeAdd.php" autocomplete="off" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Rezept hinzufügen</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <label for="Rezept" class="form-label">Rezept</label>
+                                    <input type="text" class="form-control" id="Rezept" name="Rezept">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <label for="URL" class="form-label">URL</label>
+                                    <input type="text" class="form-control" id="URL" name="URL">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <label for="Beschreibung" class="form-label">Beschreibung</label>
+                                <textarea class="form-control ms-2" id="Beschreibung" name="Beschreibung" rows="3" style="width: 96%;"></textarea>
+                            </div>
+                            <div class="row mb-2">
+                                <label for="Zubereitung" class="form-label">Zubereitung</label>
+                                <textarea class="form-control ms-2" id="Zubereitung" name="Zubereitung" rows="3" style="width: 96%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                        <button type="submit" class="btn btn-primary">Speichern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     </body>
 </html>
