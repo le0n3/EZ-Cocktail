@@ -20,11 +20,22 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     });
 
-    // handle modal popup
+    // handle modal popup for adding ingredients
     document.querySelector('#addIngredient').addEventListener('click', async function () {
         let response = await fetch(`../html/ingredientModal.php`).catch(function () {
-            alert('Ihre Session ist abgelaufen. Laden Sie die Seite erneut.');
+            alert('Ein Fehler ist aufgetreten. Laden Sie die Seite erneut.');
         });
         document.querySelector('#detailInfo').innerHTML = await response.text();
+    });
+
+    // handle modal popup for editing
+    document.querySelectorAll('.editIngredient').forEach(element => {
+        element.addEventListener('click', async function () {
+            let id = element.getAttribute('data-id');
+            let response = await fetch(`../html/ingredientModal.php?id=${id}`).catch(function () {
+                alert('Ein Fehler ist aufgetreten. Laden Sie die Seite erneut.');
+            });
+            document.querySelector('#detailInfo').innerHTML = await response.text();
+        });
     });
 })

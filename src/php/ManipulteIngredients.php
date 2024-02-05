@@ -21,3 +21,6 @@ if(!array_key_exists('id', $_POST)){
 
     DBConnection::updateIngredient(new Ingredient($id, $zutat, $beschreibung,$menge, $typ, $einheit));
 }
+
+header("Location: ../html/index.php");
+die();
