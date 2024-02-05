@@ -38,7 +38,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
     <link href="../css/ezCockTail.css" rel="stylesheet">
 
     <!-- Custom JS -->
-      <script src="../js/index.js"></script>
+      <script src="../js/myIngredients.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,7 +49,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
             </a>
             <a>•</a>
             <a class="navbar-brand">
-                <span class="ms-4">Alle Zutaten</span>
+                <span class="ms-4">Meine Zutaten</span>
             </a>
         </div>
       </nav>
@@ -57,12 +57,12 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
         <div class="d-flex flex-column flex-shrink-0 bg-light vh-100">
             <ul class="nav nav-pills nav-flush flex-column mb-auto text-center sticky-top top-0">
               <li class="nav-item">
-                <a href="index.php" class="nav-link active py-3 border-bottom" aria-current="page" title="Alle Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Alle Zutaten">
+                <a href="index.php" class="nav-link py-3 border-bottom" aria-current="page" title="Meine Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Meine Zutaten">
                     <span class="icon icon-grocery"></span>
                 </a>
               </li>
                 <li class="nav-item">
-                    <a href="myIngredients.php" class="nav-link py-3 border-bottom" aria-current="page" title="Meine Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Meine Zutaten">
+                    <a href="myIngredients.php" class="nav-link active py-3 border-bottom" aria-current="page" title="Meine Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Meine Zutaten">
                         <span class="icon icon-grocery"></span>
                     </a>
                 </li>
@@ -107,6 +107,32 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                                                     } else {
                                                         echo "asc";
                                                     }
+                                  }else  {
+                                      echo 'desc';
+                                  } ?>">
+                            </span>
+                        </th>
+                        <th scope="col" class="table-amount">
+                            <span>Menge</span>
+                            <span class="icon
+                                  <?php if ($sort['sort'] == 'menge') {
+                                        if ($sort['order'] == 'asc') {
+                                            echo 'icon-expand_more';
+                                        } else {
+                                            echo 'icon-expand_less';
+                                        }
+                                    } else {
+                                        echo 'icon-unfold_more';
+                                    }
+                                    ?>
+                                  sort-submit"
+                                  data-sort="menge"
+                                  data-order="<?php if($sort['sort'] == 'menge') {
+                                      if ($sort['order'] == 'asc') {
+                                          echo 'desc';
+                                      } else {
+                                          echo "asc";
+                                      }
                                   }else  {
                                       echo 'desc';
                                   } ?>">
@@ -196,6 +222,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                             <a href="index.php"><span class="icon icon-close top-1" title="Filter entfernen"></span></a>
                         </th>
                         <th scope="col" class="table-name"><input type="text" name="filter[Name]" value="<?php echo $filterName; ?>"></th>
+                        <th scope="col" class="table-amount"><input type="text" name="filter[Menge]" value="<?php echo $filterMenge; ?>"></th>
                         <th scope="col" class="table-unit"><input type="text" name="filter[Einheit]" value="<?php echo $filterEinheit; ?>"></th>
                         <th scope="col" class="table-type"><input type="text" name="filter[Typ]" value="<?php echo $filterTyp; ?>"></th>
                         <th scope="col" class="table-final-col"><input type="text" name="filter[Beschreibung]" value="<?php echo $filterBeschreibung; ?>"></th>
@@ -222,7 +249,36 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
     <!-- Modal -->
     <div class="modal fade" id="ingredientModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" id="detailInfo">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Zutat hinzufügen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="zutatId" class="form-label">Zutat</label>
+                                <select class="form-control" id="zutatId" name="zutatId">
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon" selected>der ist ausgewählt weil selected</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                    <option value="hier die ID rein Leon">Hier den Wert rein Leon</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="Menge" class="form-label">Menge</label>
+                            <input type="text" class="form-control" id="Menge" name="Menge">
+                        </div>
+                    </div>
+                    <div id="detailInfo"></div>
+                </div>
             </div>
         </div>
     </div>
