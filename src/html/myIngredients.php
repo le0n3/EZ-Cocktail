@@ -38,7 +38,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
     <link href="../css/ezCockTail.css" rel="stylesheet">
 
     <!-- Custom JS -->
-      <script src="../js/index.js"></script>
+      <script src="../js/myIngredients.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,7 +49,7 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
             </a>
             <a>•</a>
             <a class="navbar-brand">
-                <span class="ms-4">Alle Zutaten</span>
+                <span class="ms-4">Meine Zutaten</span>
             </a>
         </div>
       </nav>
