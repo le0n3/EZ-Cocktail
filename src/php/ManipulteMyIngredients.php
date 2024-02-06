@@ -2,13 +2,13 @@
 include_once("../php/DBConnector.php");
 if(!array_key_exists('Id', $_POST)){
     $menge = $_POST['Menge'];
-    $ingredientId = $_POST['MeineZutatId'];//Wie komme ich hir an die ZutatID
+    $ingredientId = $_POST['MeineZutatId'];
 
     DBConnection::createQuantetyOffIngerdeans($ingredientId, $menge);
 }else{
 
     $menge = $_POST['Menge'];
-    $ingredientId = $_POST['MeineZutatId'];
+    $ingredientId = $_POST['Id'];
 
     DBConnection::uptareQuantetyOffIngerdeans($ingredientId, $menge);
 }
