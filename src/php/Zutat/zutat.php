@@ -58,16 +58,4 @@ class Ingredient
     {
         return $this->longunit;
     }
-
-    public function generateIngredientLine()
-    {
-        return "<tr>
-                        <td class=\"table-icon\" title=\"Eintrag bearbeiten\"><span class=\"icon icon-edit editIngredient\" data-bs-toggle=\"modal\" data-bs-target=\"#ingredientModal\" data-id='". $this->id ."'></span></td>
-                        <td class=\"table-name\" title=\"". $this->ingredient ."\"><span>". $this->ingredient ."</span></td>
-                        <td class=\"table-unit\" title=\"". $this->unit ."\"><span>". $this->unit ."</span></td>
-                        <td class=\"table-type\" title=\"". $this->type ."\"><span>". $this->type ."</span></td>
-                        <td class=\"table-description\" title=\"". $this->description ."\"><span>". $this->description ."</span></td>
-                    </tr>";
-    }
-
 }

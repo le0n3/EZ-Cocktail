@@ -24,7 +24,7 @@ class DBConnection
         return self::$connection;
     }
 
-    public static function readFiltertngredient(bool $WhithNULL ,String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= "", String $OrderBy = "" , String $Reinfolge = "asc"): array
+    public static function readFiltertngredient(bool $WhithNULL ,String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= "", String $OrderBy = "name" , String $Reinfolge = "asc"): array
     {
         try {
 
