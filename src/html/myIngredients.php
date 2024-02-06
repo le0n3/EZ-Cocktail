@@ -15,6 +15,7 @@ if (array_key_exists("filter",$_REQUEST)){
     $filterTyp = array_key_exists("Typ", $filter) ? $filter['Typ']: "";
     $filterBeschreibung = array_key_exists("Beschreibung", $filter) ? $filter['Beschreibung']: "";
 }
+
 $Ingredients = DBConnection::readFiltertIngredient( false , $filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
 
 ?>
@@ -240,7 +241,7 @@ $Ingredients = DBConnection::readFiltertIngredient( false , $filterName, $filter
 
                     <tr>
                         <td class="table-icon" title="Eintrag bearbeiten"><span class="icon icon-edit editIngredient" data-bs-toggle="modal" data-bs-target="#ingredientModal" data-id='<?php echo $ingredient->getId(); ?>'></span></td>
-                        <td class="table-name" title="<?php echo $ingredient->getIngredient(); ?>"><span><?php echo $ingredient->getIngredient(); ?></span></td>
+                        <td class="table-name" title="<?php echo $ingredient->getName(); ?>"><span><?php echo $ingredient->getName(); ?></span></td>
                         <td class="table-amount" title="<?php echo $ingredient->getQuantity(); ?>"><span><?php echo $ingredient->getQuantity(); ?></span></td>
                         <td class="table-unit" title="<?php echo $ingredient->getUnit(); ?>"><span><?php echo $ingredient->getUnit(); ?></span></td>
                         <td class="table-type" title="<?php echo $ingredient->getType(); ?>"><span><?php echo $ingredient->getType(); ?></span></td>

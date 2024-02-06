@@ -6,8 +6,8 @@ include_once("../php/Rezept/recipeIngedeans.php");
 
     $id = array_key_exists('id', $_REQUEST) ? $_REQUEST['id'] : '';
 
-    $recipe = DBConnection::getRecipebyId($id);
-    $zutaten = DBConnection::getIngredensByRecipeId($id);
+    $recipe = DBConnection::getRecipeById($id);
+    $zutaten = DBConnection::getIngredientsByRecipeId($id);
 
 ?>
 
