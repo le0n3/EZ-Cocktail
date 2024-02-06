@@ -15,7 +15,9 @@ if (array_key_exists("filter",$_REQUEST)){
     $filterTyp = array_key_exists("Typ", $filter) ? $filter['Typ']: "";
     $filterBeschreibung = array_key_exists("Beschreibung", $filter) ? $filter['Beschreibung']: "";
 }
-$Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
+$Ingredients = DBConnection::readFiltertngredient( false , $filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
+$IngredientsWHithNULL = DBConnection::readFiltertngredient( true , $filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
+
 ?>
 
 <!doctype html>
@@ -272,14 +274,13 @@ $Ingredients = DBConnection::readFiltertngredient($filterName, $filterMenge, $fi
                                 <select class="form-control" id="zutatId" name="zutatId">
                                     <?php
                                         //Das ist mist so komme ich nicht an die Zutat ID und ich kann den Wahl schalter nicht auslehsen den ich zwingend für das neu erstellen brauche zudem muss die Id ü
-                                    foreach($Ingredients as $ingredient)
+                                    foreach($IngredientsWHithNULL as $ingredient)
                                     {?>
 
                                         <option value="<?php echo $ingredient->getIngredient(); ?>"><?php echo $ingredient->getIngredient(); ?></option>
 
                                         <?php
                                     }
-
                                     ?>
                                 </select>
                             </div>

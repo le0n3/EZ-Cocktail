@@ -24,14 +24,19 @@ class DBConnection
         return self::$connection;
     }
 
-    public static function readFiltertngredient(String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= "", String $OrderBy = "" , String $Reinfolge): array
+    public static function readFiltertngredient(bool $WhithNULL ,String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= "", String $OrderBy = "" , String $Reinfolge = "asc"): array
     {
         try {
 
             $ingredienz = array();
             $conn = self::getConnection();
+if ($WhithNULL){
+    $nullstring = "or menge is null";
 
-            $sql = "SELECT * FROM `zutatgesamt` where name LIKE '%". $Name."%' and (menge LIKE '%". $Menge."%' or menge is null)  and `einheit` LIKE '%". $Einheit."%' and typ LIKE '%". $Typ."%' and beschreibung LIKE '%". $Beschribung."%' ORDER BY ". $OrderBy." ". $Reinfolge.";";
+}else {
+    $nullstring = "";
+}
+            $sql = "SELECT * FROM `zutatgesamt` where name LIKE '%". $Name."%' and (menge LIKE '%". $Menge."%' ". $nullstring." )  and `einheit` LIKE '%". $Einheit."%' and typ LIKE '%". $Typ."%' and beschreibung LIKE '%". $Beschribung."%' ORDER BY ". $OrderBy." ". $Reinfolge.";";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -137,7 +142,8 @@ class DBConnection
 
     public  static function updateIngredient(Ingredient $ingredeant)
     {
-        if(!self::CheckIfZutatAllreadyExists($ingredeant)){
+        $check = self::getIngredientById($ingredeant->getId());
+        if($check == null){
             return;
         }
 
@@ -371,7 +377,7 @@ class DBConnection
             $sql = "SELECT * FROM `zutatgesamt` WHERE `name`  = ?";
             $stmt = $conn->prepare($sql);
             $name = $ingredient->getIngredient() ;
-            $stmt->bind_param("i", $name);
+            $stmt->bind_param("s", $name);
             $stmt->execute();
             $result = $stmt->get_result();
 
@@ -412,7 +418,7 @@ class DBConnection
             $sql = "SELECT * FROM `rezeptgesamt` WHERE `name`  = ?";
             $stmt = $conn->prepare($sql);
             $name = $rezept->getName();
-            $stmt->bind_param("i", $name);
+            $stmt->bind_param("s", $name);
             $stmt->execute();
             $result = $stmt->get_result();
 
