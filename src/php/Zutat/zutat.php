@@ -8,9 +8,11 @@ class Ingredient
     private $quantity;
     private $type;
 
+    private $longunit;
+
     private $unit;
 
-    public function __construct($id, $ingredient, $description, $quantity, $type, $unit)
+    public function __construct($id, $ingredient, $description, $quantity, $type, $unit ,$longUnit)
     {
         $this->id = $id;
         $this->ingredient = $ingredient;
@@ -18,6 +20,7 @@ class Ingredient
         $this->quantity = $quantity;
         $this->type = $type;
         $this->unit = $unit;
+        $this->longunit = $longUnit;
     }
 
     // getters
@@ -49,6 +52,11 @@ class Ingredient
     public function getUnit()
     {
         return $this->unit;
+    }
+
+    public function getLongUnit()
+    {
+        return $this->longunit;
     }
 
     public function generateIngredientLine()
