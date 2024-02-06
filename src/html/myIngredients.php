@@ -16,7 +16,6 @@ if (array_key_exists("filter",$_REQUEST)){
     $filterBeschreibung = array_key_exists("Beschreibung", $filter) ? $filter['Beschreibung']: "";
 }
 $Ingredients = DBConnection::readFiltertngredient( false , $filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
-$IngredientsWHithNULL = DBConnection::readFiltertngredient( true , $filterName, $filterMenge, $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
 
 ?>
 
@@ -261,34 +260,8 @@ $IngredientsWHithNULL = DBConnection::readFiltertngredient( true , $filterName, 
     <!-- Modal -->
     <div class="modal fade" id="ingredientModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Zutat hinzufügen</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row mb-2">
-                            <div class="col">
-                                <label for="zutatId" class="form-label">Zutat</label>
-                                <select class="form-control" id="zutatId" name="zutatId">
-                                    <?php
-                                        //Das ist mist so komme ich nicht an die Zutat ID und ich kann den Wahl schalter nicht auslehsen den ich zwingend für das neu erstellen brauche zudem muss die Id ü
-                                    foreach($IngredientsWHithNULL as $ingredient)
-                                    {?>
+            <div class="modal-content" id="detailInfo">
 
-                                        <option value="<?php echo $ingredient->getIngredient(); ?>"><?php echo $ingredient->getIngredient(); ?></option>
-
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div id="detailInfo"></div>
-                </div>
             </div>
         </div>
     </div>
