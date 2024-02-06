@@ -48,4 +48,9 @@ class Recipe
     {
         return $this->Id;
     }
+
+    public function getUrl()
+    {
+        return $this->Url;
+    }
 }

@@ -5,7 +5,7 @@ $myIngredient = null;
     if(array_key_exists('id', $_REQUEST)){
         $myIngredient = DBConnection::getIngredientById($_REQUEST['id']);
     }
-    $IngredientsWHithNULL = DBConnection::readFiltertngredient( true);
+    $IngredientsWHithNULL = DBConnection::readIngredientWhithNoQuantety();
 
 ?>
 

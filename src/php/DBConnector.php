@@ -24,18 +24,20 @@ class DBConnection
         return self::$connection;
     }
 
-    public static function readFiltertngredient(bool $WhithNULL ,String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= "", String $OrderBy = "name" , String $Reinfolge = "asc"): array
+    public static function readFiltertIngredient(bool $WhithNULL , String $Name = "", String $Menge = "", String $Einheit = "", String $Typ ="", String $Beschribung= "", String $OrderBy = "name" , String $Reinfolge = "asc"): array
     {
         try {
 
             $ingredienz = array();
             $conn = self::getConnection();
-if ($WhithNULL){
-    $nullstring = "or menge is null";
 
-}else {
-    $nullstring = "";
-}
+            if ($WhithNULL){
+                $nullstring = "or menge is null";
+
+            }else {
+                $nullstring = "";
+            }
+
             $sql = "SELECT * FROM `zutatgesamt` where name LIKE '%". $Name."%' and (menge LIKE '%". $Menge."%' ". $nullstring." )  and `einheit` LIKE '%". $Einheit."%' and typ LIKE '%". $Typ."%' and beschreibung LIKE '%". $Beschribung."%' ORDER BY ". $OrderBy." ". $Reinfolge.";";
             $result = $conn->query($sql);
 
@@ -44,6 +46,32 @@ if ($WhithNULL){
                 while ($row = $result->fetch_assoc()) {
 
                     array_push($ingredienz, new Ingredient($row["id"], $row["name"], $row["beschreibung"],array_key_exists('menge', $row)? $row["menge"]?? 0 : 0, $row["typ"], $row["einheit"], $row["einheitlang"]));
+                }
+            }
+
+        } catch (Exception $e) {
+            return $ingredienz;
+        }
+        return $ingredienz;
+    }
+
+    public static function readIngredientWhithNoQuantety(): array
+    {
+        try {
+
+            $ingredienz = array();
+            $conn = self::getConnection();
+
+
+
+            $sql = "SELECT * FROM `zutatgesamt` WHERE `menge` is Null";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+
+                while ($row = $result->fetch_assoc()) {
+
+                    array_push($ingredienz, new Ingredient($row["id"], $row["name"], $row["beschreibung"],0, $row["typ"], $row["einheit"], $row["einheitlang"]));
                 }
             }
 
@@ -335,8 +363,38 @@ if ($WhithNULL){
 
     public static function getRecepiesByIngredeans(): array
     {
-        //TODO: Select Befehl erstellen
-        return array();
+        try {
+
+            $rezepie = array();
+            $conn = self::getConnection();
+
+            $sql = "SELECT *
+                    FROM rezeptgesamt 
+                    WHERE NOT EXISTS (
+                        SELECT * FROM zutat_rezept
+                        WHERE zutat_rezept.rezeptId = rezeptgesamt.id AND (
+                            zutat_rezept.menge > (
+                                SELECT zutatinventar.menge FROM zutatinventar
+                                WHERE zutatinventar.zutatId = zutat_rezept.zutatId)
+                            OR NOT EXISTS (
+                                SELECT * FROM zutatinventar
+                                WHERE zutatinventar.zutatId = zutat_rezept.zutatId))
+                    );";
+
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+
+                while ($row = $result->fetch_assoc()) {
+
+                    array_push($rezepie, new Recipe($row["id"], $row["name"], $row["beschreibung"], $row["zubereitung"], $row["url"]));
+                }
+            }
+
+        } catch (Exception $e) {
+            return $rezepie;
+        }
+        return $rezepie;
     }
 
     public static function CreatRecipe(Recipe $recipe, array $ingredeans)
@@ -344,7 +402,58 @@ if ($WhithNULL){
         if (self::CheckIfRecipeAllreadyExists($recipe)){
             return;
         }
-        //TODO: Erstellen eines Rezeptes
+
+        $conn = self::getConnection();
+
+        $smt = $conn->prepare("INSERT INTO `rezept`( `name`, `beschreibung`, `zubereitung`) VALUES (?,?,?);");
+
+
+        if(!$smt){
+            echo "Error Prepareing Statment ";
+            return;
+        }
+
+        $var1 = $recipe->getName();
+        $var2 = $recipe->getDescription();
+        $var3 = $recipe->getZubereitung();
+
+        $smt->bind_param("sss",$var1 ,$var2, $var3 );
+        if(!$smt->execute()){
+            echo "Error Creating record ". $smt->error;
+            return;
+        }
+        $smt = $conn->prepare("Insert INTO rezeptbild (rezeptbild.rezeptId, rezeptbild.url) Values ((Select id from rezept WHERE name = ?),?);");
+
+        if(!$smt){
+            echo "Error Prepareing Statment ";
+            return;
+        }
+
+        $var1 = $recipe->getName();
+        $var2 = $recipe->getUrl();
+
+        $smt->bind_param("sss",$var1 ,$var2 );
+        if(!$smt->execute()){
+            echo "Error Creating record ". $smt->error;
+            return;
+        }
+
+        try {
+            $conn->begin_transaction();
+
+            $query = "INSERT INTO `zutat_rezept`(`menge`, `rezeptId`, `zutatId`) VALUES (?,(SELECT id FROM rezept WHERE rezept.name = ?),(SELECT id From zutat WHERE zutat.name = ?))";
+            $stmt = $conn->prepare($query);
+
+            foreach ($ingredeans as $ingredean) {
+                $stmt->execute([$ingredean->getAmount(), $recipe->getName(), $ingredean->getZutat()]);
+            }
+
+            $conn->commit();
+
+        } catch (Exception $e) {
+            $conn->rollback();
+            return;
+        }
     }
 
     public static function RrcepieDone(Int $RecepieID)

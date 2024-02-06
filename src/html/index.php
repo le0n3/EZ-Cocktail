@@ -15,7 +15,7 @@ if (array_key_exists("filter",$_REQUEST)){
     $filterTyp = array_key_exists("Typ", $filter) ? $filter['Typ']: "";
     $filterBeschreibung = array_key_exists("Beschreibung", $filter) ? $filter['Beschreibung']: "";
 }
-$Ingredients = DBConnection::readFiltertngredient(true ,$filterName, "", $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
+$Ingredients = DBConnection::readFiltertIngredient(true ,$filterName, "", $filterEinheit, $filterTyp, $filterBeschreibung, $sortName, $sortOrder);
 ?>
 
 <!doctype html>
