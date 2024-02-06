@@ -39,23 +39,28 @@ $recipes = DBConnection::readAllRecipes();
     </nav>
     <div class="main">
       <div class="d-flex flex-column flex-shrink-0 bg-light vh-100">
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center sticky-top top-0">
-          <li class="nav-item">
-            <a href="index.php" class="nav-link py-3 border-bottom" title="Meine Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Meine Zutaten">
-              <span class="icon icon-grocery"></span>
-            </a>
-          </li>
-          <li>
-            <a href="allRecipes.html" class="nav-link py-3 border-bottom active" aria-current="page" title="Alle Rezepte" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Alle Rezepte">
-              <span class="icon icon-format_list_bulleted"></span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link py-3 border-bottom" title="Mögliche Rezepte" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Mögliche Rezepte">
-              <span class="icon icon-checklist"></span>
-            </a>
-          </li>
-        </ul>
+          <ul class="nav nav-pills nav-flush flex-column mb-auto text-center sticky-top top-0">
+              <li class="nav-item">
+                  <a href="index.php" class="nav-link py-3 border-bottom" aria-current="page" title="Alle Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Alle Zutaten">
+                      <span class="icon icon-grocery"></span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="myIngredients.php" class="nav-link py-3 border-bottom" aria-current="page" title="Meine Zutaten" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Meine Zutaten">
+                      <span class="icon icon-grocery"></span>
+                  </a>
+              </li>
+              <li>
+                  <a href="allRecipes.php" class="nav-link py-3 border-bottom active" aria-current="page" title="Alle Rezepte" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Alle Rezepte">
+                      <span class="icon icon-format_list_bulleted"></span>
+                  </a>
+              </li>
+              <li>
+                  <a href="myRecipes.php" class="nav-link py-3 border-bottom" aria-current="page" title="Mögliche Rezepte" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Mögliche Rezepte">
+                      <span class="icon icon-checklist"></span>
+                  </a>
+              </li>
+          </ul>
       </div>
       <div class="w-100">
         <!--for future implementation-->
