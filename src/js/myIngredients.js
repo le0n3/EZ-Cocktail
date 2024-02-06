@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Ein Fehler ist aufgetreten. Laden Sie die Seite erneut.');
         });
         document.querySelector('#detailInfo').innerHTML = await response.text();
+
+        document.querySelector('#zutatId').addEventListener('change', event => {
+            let selectId = event.target.value;
+            updateSubModal(selectId);
+        });
     });
 
     // handle modal popup for editing
@@ -35,7 +40,17 @@ document.addEventListener('DOMContentLoaded', function () {
             let response = await fetch(`../html/myIngredientModal.php?id=${id}`).catch(function () {
                 alert('Ein Fehler ist aufgetreten. Laden Sie die Seite erneut.');
             });
+
+
             document.querySelector('#detailInfo').innerHTML = await response.text();
+            await updateSubModal(id);
         });
     });
 })
+
+async function updateSubModal(id) {
+    let subModalResponse = await fetch(`../html/myIngredientSubModal.php?id=${id}`).catch(function () {
+        alert('Ein Fehler ist aufgetreten. Laden Sie die Seite erneut.');
+    });
+    document.querySelector('#subModalDiv').innerHTML = await subModalResponse.text();
+}

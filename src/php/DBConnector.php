@@ -232,7 +232,7 @@ if ($WhithNULL){
 
     }
 
-    public static function uptareQuantetyOffIngerdeans(int $zutatID, int $newQuantety)
+    public static function uptareQuantetyOffIngerdeans(string $zutatID, string $newQuantety)
     {
 
         if(!self::CheckIFQuanteteyAllreadyExists($zutatID)){
