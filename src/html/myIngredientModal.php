@@ -17,7 +17,7 @@ $myIngredient = null;
     <div class="modal-body">
         <div class="container">
                 <?php if ($myIngredient != null) {
-                    echo '<input type="hidden" name="MeineZutatId" value="'.$_REQUEST['id'].'">';
+                    echo '<input type="hidden" name="Id" value="'.$_REQUEST['id'].'">';
                 } ?>
                 <div class="container">
                     <div class="row mb-2">
