@@ -11,7 +11,7 @@ $myIngredient = null;
 
 <form action="../php/ManipulteMyIngredients.php" autocomplete="off" method="post">
     <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle">Zutat hinzufügen</h5>
+        <h5 class="modal-title" id="modalTitle">Zutat <?php echo !is_null($myIngredient) ? 'Bearbeiten': 'Hinzufügen'; ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
@@ -23,8 +23,8 @@ $myIngredient = null;
                     <div class="row mb-2">
                         <div class="col">
                             <label for="zutatId" class="form-label">Zutat</label>
-                            <select class="form-control" id="zutatId" name="MeineZutatId">
-                                <option selected disabled>Bitte Wählen</option>
+                            <select class="form-control" id="zutatId" name="MeineZutatId"  <?php echo !is_null($myIngredient) ? 'disabled': ''; ?> >
+                                <option selected disabled><?php echo !is_null($myIngredient) ? $myIngredient->getIngredient(): 'Bitte Wählen'; ?></option>
                                 <?php
                                 //Das ist mist so komme ich nicht an die Zutat ID und ich kann den Wahl schalter nicht auslehsen den ich zwingend für das neu erstellen brauche zudem muss die Id ü
                                 foreach($IngredientsWHithNULL as $ingredient)
