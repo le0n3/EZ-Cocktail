@@ -7,7 +7,7 @@ if (array_key_exists('id', $_REQUEST)) {
 
 ?>
 
- <div class=\"row mb-2\">
+<div class="row mb-2">
 <div class="col">
     <label for="EinheitKürzel" class="form-label">Einheit Kürzel</label>
     <input disabled type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel" value="<?php echo !is_null($myIngredient) ? $myIngredient->getLongUnit(): ''; ?>">

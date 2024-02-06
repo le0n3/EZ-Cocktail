@@ -1,7 +1,6 @@
 <?php
 // hier anhand einer zutatId die werte für Einheiten usw anzeigen, aber disabled lassen
 include_once("../php/DBConnector.php");
-include_once ("../php/generateMyIngerdeansModal.php");
 $myIngredient = null;
     if(array_key_exists('id', $_REQUEST)){
         $myIngredient = DBConnection::getIngredientById($_REQUEST['id']);
@@ -24,13 +23,14 @@ $myIngredient = null;
                     <div class="row mb-2">
                         <div class="col">
                             <label for="zutatId" class="form-label">Zutat</label>
-                            <select class="form-control" id="zutatId" name="zutatId">
+                            <select class="form-control" id="zutatId" name="MeineZutatId">
+                                <option selected disabled>Bitte Wählen</option>
                                 <?php
                                 //Das ist mist so komme ich nicht an die Zutat ID und ich kann den Wahl schalter nicht auslehsen den ich zwingend für das neu erstellen brauche zudem muss die Id ü
                                 foreach($IngredientsWHithNULL as $ingredient)
                                 {?>
 
-                                    <option value="<?php echo $ingredient->getIngredient(); ?>"><?php echo $ingredient->getIngredient(); ?></option>
+                                    <option value="<?php echo $ingredient->getId(); ?>"><?php echo $ingredient->getIngredient(); ?></option>
 
                                     <?php
                                 }
@@ -44,7 +44,29 @@ $myIngredient = null;
                             <input type="text" class="form-control" id="Menge" name="Menge" value="<?php echo !is_null($myIngredient) ? $myIngredient->getQuantity(): ''; ?>">
                         </div>
                     </div>
-//TODO: Da Muss die scheise aus dem geneateMyIngerdeansModal.php rein
+                    <div id="subModalDiv">
+                    <!-- default values -->
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="EinheitKürzel" class="form-label">Einheit Kürzel</label>
+                                <input disabled type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel">
+                            </div>
+                            <div class="col">
+                                <label for="Einheit" class="form-label">Einheit</label>
+                                <input disabled type="text" class="form-control" id="Einheit" name="Einheit">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="Typ" class="form-label">Typ</label>
+                                <input disabled type="text" class="form-control" id="Typ" name="Typ">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="Beschreibung" class="form-label">Beschreibung</label>
+                            <textarea disabled class="form-control ms-2" id="Beschreibung" name="Beschreibung" rows="3" style="width: 96%;"></textarea>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
