@@ -1,18 +1,12 @@
 <?php
 include_once("../php/DBConnector.php");
-$ingredients = DBConnection::readFiltertngredient(true);
+$ingredient = DBConnection::getIngredientById($_REQUEST['id']);
+
 ?>
-    <td class="ingredientSelect">
-        <label class="w-100">
-            <select name="zutaten[id][]" class="form-select ingredientSelectElement">
-                <option selected disabled>Bitte wählen</option>
-                <?php
-                foreach ($ingredients as $ingredient) {
-                    echo '<option value="'.$ingredient->getId().'" data-unit="'.$ingredient->getUnit().'">'.$ingredient->getIngredient().'</option>';
-                }
-                ?>
-            </select>
-        </label>
-    </td>
-    <td class="ingredientAmount"><label class="w-100"><input class="form-control" type="text" name="zutaten[menge][]"></label></td>
-    <td class="ingredientUnit"><label class="w-100"><input class="form-control" type="text" name="zutaten[einheit][]"></label></td>
+
+<tr>
+    <td class="ingredientSelect d-none"><label class="w-100"><input disabled class="form-control" type="text" name="zutaten[<?php echo $ingredient->getId() ?>][id]" value="<?php echo $ingredient->getId() ?>"></label></td>
+    <td class="ingredientSelect"><label class="w-100"><input disabled class="form-control" type="text" name="zutaten[<?php echo $ingredient->getName() ?>][zutatName]" value="<?php echo $ingredient->getName() ?>"></label></td>
+    <td class="ingredientAmount"><label class="w-100"><input class="form-control" type="text" name="zutaten[<?php echo $ingredient->getId() ?>][menge]"></label></td>
+    <td class="ingredientUnit"><label class="w-100"><input disabled class="form-control" type="text" name="zutaten[<?php echo $ingredient->getUnit() ?>][einheit]" value="<?php echo $ingredient->getUnit() ?>"></label></td>
+</tr>

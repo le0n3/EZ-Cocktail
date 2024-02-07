@@ -21,7 +21,7 @@ $recipes = DBConnection::getRecipesByIngredients();
     <link href="../css/card.css" rel="stylesheet">
     <link href="../css/ezCockTail.css" rel="stylesheet">
     <!--custom JS -->
-    <script src="../js/allRecipes.js"></script>
+    <script src="../js/myRecipes.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -86,15 +86,6 @@ $recipes = DBConnection::getRecipesByIngredients();
         </div>
         <div class="row">
             <div class="cards-container m-auto shadow rounded bg-light">
-
-                <div class="card" id="add_entry_card" data-bs-toggle="modal" data-bs-target="#recipeAdd">
-                    <img src="../Images/plus.png" class="card-img-top" alt="add">
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <div class="description-container">
-                        </div>
-                    </div>
-                </div>
                 <?php
                 foreach($recipes as $recipe)
                 {
@@ -109,8 +100,13 @@ $recipes = DBConnection::getRecipesByIngredients();
     <div class="modal fade" id="recipeDetail" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <form action="../php/Rezept/recipeMixed.php">
-                <input type="hidden" name="destination" value="myRecipes.php">
-                <div class="modal-content" id="detailInfo"></div>
+                <div class="modal-content">
+                    <div class="modal-content" id="detailInfo"></div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                        <button type="submit" class="btn btn-primary">Zubereiten</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

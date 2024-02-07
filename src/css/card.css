@@ -13,6 +13,8 @@
 }
 .card img {
     padding: 15px;
+    height: 250px;
+    object-fit: scale-down;
 }
 .cards-container {
     height: 95vh;
