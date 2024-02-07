@@ -21,6 +21,7 @@ $recipes = DBConnection::readAllRecipes();
     <link href="../css/topBar.css" rel="stylesheet">
     <link href="../css/card.css" rel="stylesheet">
     <link href="../css/ezCockTail.css" rel="stylesheet">
+    <link href="../css/allRecipes.css" rel="stylesheet">
     <!--custom JS -->
     <script src="../js/allRecipes.js"></script>
   </head>
@@ -138,11 +139,38 @@ $recipes = DBConnection::readAllRecipes();
                             </div>
                             <div class="row mb-2">
                                 <label for="Beschreibung" class="form-label">Beschreibung</label>
-                                <textarea class="form-control ms-2" id="Beschreibung" name="Beschreibung" rows="3" style="width: 96%;"></textarea>
+                                <textarea class="form-control" id="Beschreibung" name="Beschreibung" rows="3" style="margin-left: 13px;width: 95%;"></textarea>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="container">
+                                    <table class="table-primary" id="ingredientsTable">
+                                        <thead>
+                                        <tr>
+                                            <th class="ingredientSelect">Zutat</th>
+                                            <th class="ingredientAmount">Menge</th>
+                                            <th class="ingredientUnit">Einheit</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ingredientSelect">
+                                                    <label class="w-100">
+                                                        <select name="zutaten[id][]" class="form-select ingredientSelectElement">
+                                                            <option selected disabled>Bitte wählen</option>
+                                                        </select>
+                                                    </label>
+                                                </td>
+                                                <td class="ingredientAmount"><label class="w-100"><input class="form-control" type="text" name="zutaten[menge][]"></label></td>
+                                                <td class="ingredientUnit"><label class="w-100"><input class="form-control" type="text" name="zutaten[einheit][]"></label></td>
+                                            </tr>
+                                            <tr class="targetIngredientRow d-none"></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <label for="Zubereitung" class="form-label">Zubereitung</label>
-                                <textarea class="form-control ms-2" id="Zubereitung" name="Zubereitung" rows="3" style="width: 96%;"></textarea>
+                                <textarea class="form-control" id="Zubereitung" name="Zubereitung" rows="10" style="margin-left: 13px;width: 95%;"></textarea>
                             </div>
                         </div>
                     </div>
