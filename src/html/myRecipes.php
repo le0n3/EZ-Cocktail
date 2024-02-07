@@ -109,6 +109,7 @@ $recipes = DBConnection::getRecipesByIngredients();
     <div class="modal fade" id="recipeDetail" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <form action="../php/Rezept/recipeMixed.php">
+                <input type="hidden" name="destination" value="myRecipes.php">
                 <div class="modal-content" id="detailInfo"></div>
             </form>
         </div>

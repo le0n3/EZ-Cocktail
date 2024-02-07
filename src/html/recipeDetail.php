@@ -11,30 +11,30 @@ include_once("../php/Rezept/recipeIngedeans.php");
 
 ?>
 
-<input type="hidden" name="id" value="<?php echo $id; ?>">
-<div class="modal-header">
-    <h5 class="modal-title" id="modalTitle"><?php echo $recipe->getName()?></h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
-<div class="modal-body">
-    <div>
-        <p><?php echo $recipe->getDescription()?></p>
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
+    <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle"><?php echo $recipe->getName()?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    <div>
-        <ul>
-            <?php
+    <div class="modal-body">
+        <div>
+            <p><?php echo $recipe->getDescription()?></p>
+        </div>
+        <div>
+            <ul>
+                <?php
 
-            foreach ($zutaten as $zutat) {
-                echo $zutat->GenerateBulletpoint();
-            }
-            ?>
-        </ul>
+                foreach ($zutaten as $zutat) {
+                    echo $zutat->GenerateBulletpoint();
+                }
+                ?>
+            </ul>
+        </div>
+        <div>
+            <p><?php echo $recipe->getZubereitung()?></p>
+        </div>
     </div>
-    <div>
-        <p><?php echo $recipe->getZubereitung()?></p>
+    <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+        <button type="submit" class="btn btn-primary">Zubereiten</button>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-    <button type="submit" class="btn btn-primary">Zubereiten</button>
-</div>
