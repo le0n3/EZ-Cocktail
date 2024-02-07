@@ -24,13 +24,13 @@ $myIngredient = null;
                         <div class="col">
                             <label for="zutatId" class="form-label">Zutat</label>
                             <select class="form-control" id="zutatId" name="MeineZutatId"  <?php echo !is_null($myIngredient) ? 'disabled': ''; ?> >
-                                <option selected disabled><?php echo !is_null($myIngredient) ? $myIngredient->getIngredient(): 'Bitte Wählen'; ?></option>
+                                <option selected disabled><?php echo !is_null($myIngredient) ? $myIngredient->getName(): 'Bitte Wählen'; ?></option>
                                 <?php
                                 //Das ist mist so komme ich nicht an die Zutat ID und ich kann den Wahl schalter nicht auslehsen den ich zwingend für das neu erstellen brauche zudem muss die Id ü
                                 foreach($IngredientsWHithNULL as $ingredient)
                                 {?>
 
-                                    <option value="<?php echo $ingredient->getId(); ?>"><?php echo $ingredient->getIngredient(); ?></option>
+                                    <option value="<?php echo $ingredient->getId(); ?>"><?php echo $ingredient->getName(); ?></option>
 
                                     <?php
                                 }
