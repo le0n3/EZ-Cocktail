@@ -20,28 +20,28 @@ $ingredient = null;
             <div class="row mb-2">
                 <div class="col">
                     <label for="Zutat" class="form-label">Zutat</label>
-                    <input type="text" class="form-control" id="Zutat" name="Zutat" value="<?php echo !is_null($ingredient) ? $ingredient->getName(): ''; ?>">
+                    <input required type="text" class="form-control" id="Zutat" name="Zutat" value="<?php echo !is_null($ingredient) ? $ingredient->getName(): ''; ?>">
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
                     <label for="EinheitKürzel" class="form-label">Einheit Kürzel</label>
-                    <input type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel" value="<?php echo !is_null($ingredient) ? $ingredient->getLongUnit(): ''; ?>">
+                    <input required type="text" class="form-control" id="EinheitKürzel" name="EinheitKürzel" value="<?php echo !is_null($ingredient) ? $ingredient->getLongUnit(): ''; ?>">
                 </div>
                 <div class="col">
                     <label for="Einheit" class="form-label">Einheit</label>
-                    <input type="text" class="form-control" id="Einheit" name="Einheit" value="<?php echo !is_null($ingredient) ? $ingredient->getUnit(): ''; ?>">
+                    <input required type="text" class="form-control" id="Einheit" name="Einheit" value="<?php echo !is_null($ingredient) ? $ingredient->getUnit(): ''; ?>">
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
                     <label for="Typ" class="form-label">Typ</label>
-                    <input type="text" class="form-control" id="Typ" name="Typ" value="<?php echo !is_null($ingredient) ? $ingredient->getType(): ''; ?>">
+                    <input required type="text" class="form-control" id="Typ" name="Typ" value="<?php echo !is_null($ingredient) ? $ingredient->getType(): ''; ?>">
                 </div>
             </div>
             <div class="row mb-2">
                 <label for="Beschreibung" class="form-label">Beschreibung</label>
-                <textarea class="form-control ms-2" id="Beschreibung" name="Beschreibung" rows="3" style="width: 96%;"> <?php echo !is_null($ingredient) ? $ingredient->getDescription(): ''; ?></textarea>
+                <textarea required class="form-control ms-2" id="Beschreibung" name="Beschreibung" rows="3" style="width: 96%;"> <?php echo !is_null($ingredient) ? $ingredient->getDescription(): ''; ?></textarea>
             </div>
         </div>
     </div>

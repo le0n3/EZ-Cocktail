@@ -62,28 +62,6 @@ $recipes = DBConnection::getRecipesByIngredients();
         </ul>
     </div>
     <div class="w-100">
-        <!--for future implementation-->
-        <div class="row d-none">
-            <!--          <div class="filter-container m-auto shadow rounded bg-light">-->
-            <!--            <div class="">-->
-            <!--              <div class="row"><h1>Filter</h1></div>-->
-            <!--              <div class="row">-->
-            <!--                <div class="col">-->
-            <!--                  <div class="mb-3">-->
-            <!--                    <label for="recipeName" class="form-label">Rezeptname</label>-->
-            <!--                    <input type="text" class="form-control" id="recipeName">-->
-            <!--                  </div>-->
-            <!--                </div>-->
-            <!--                <div class="col">-->
-            <!--                  <div class="mb-3">-->
-            <!--                    <label for="difficulty" class="form-label">Schwierigkeit</label>-->
-            <!--                    <input type="text" class="form-control" id="difficulty">-->
-            <!--                  </div>-->
-            <!--                </div>-->
-            <!--                -->
-            <!--              </div>-->
-            <!--            </div>-->
-        </div>
         <div class="row">
             <div class="cards-container m-auto shadow rounded bg-light">
                 <?php
