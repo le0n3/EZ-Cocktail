@@ -13,3 +13,6 @@
     overflow-y: scroll;
     max-height: 69vh;
 }
+.modal {
+    overflow: hidden;
+}

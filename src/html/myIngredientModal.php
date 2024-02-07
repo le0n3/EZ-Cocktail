@@ -41,7 +41,7 @@ $myIngredient = null;
                     <div class="row mb-2">
                         <div class="col">
                             <label for="Menge" class="form-label">Menge</label>
-                            <input type="text" class="form-control" id="Menge" name="Menge" value="<?php echo !is_null($myIngredient) ? $myIngredient->getQuantity(): ''; ?>">
+                            <input required type="text" class="form-control" id="Menge" name="Menge" value="<?php echo !is_null($myIngredient) ? $myIngredient->getQuantity(): ''; ?>">
                         </div>
                     </div>
                     <div id="subModalDiv">

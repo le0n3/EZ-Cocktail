@@ -109,18 +109,18 @@ $ingredients = DBConnection::readFiltertIngredient(true);
                             <div class="row mb-2">
                                 <div class="col">
                                     <label for="Rezept" class="form-label">Rezept</label>
-                                    <input type="text" class="form-control" id="Rezept" name="Rezept">
+                                    <input required type="text" class="form-control" id="Rezept" name="Rezept">
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
                                     <label for="URL" class="form-label">URL</label>
-                                    <input type="text" class="form-control" id="URL" name="URL">
+                                    <input required type="text" class="form-control" id="URL" name="URL">
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <label for="Beschreibung" class="form-label">Beschreibung</label>
-                                <textarea class="form-control" id="Beschreibung" name="Beschreibung" rows="3" style="margin-left: 13px;width: 95%;"></textarea>
+                                <textarea required class="form-control" id="Beschreibung" name="Beschreibung" rows="3" style="margin-left: 13px;width: 95%;"></textarea>
                             </div>
                             <div class="row mb-2">
                                 <div class="container">
@@ -146,7 +146,7 @@ $ingredients = DBConnection::readFiltertIngredient(true);
                                             <th class="ingredientUnit">Einheit</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="ingredientsTable">
                                             <tr class="targetIngredientRow d-none"></tr>
                                         </tbody>
                                     </table>
@@ -154,12 +154,12 @@ $ingredients = DBConnection::readFiltertIngredient(true);
                             </div>
                             <div class="row mb-2">
                                 <label for="Zubereitung" class="form-label">Zubereitung</label>
-                                <textarea class="form-control" id="Zubereitung" name="Zubereitung" rows="10" style="margin-left: 13px;width: 95%;"></textarea>
+                                <textarea required class="form-control" id="Zubereitung" name="Zubereitung" rows="10" style="margin-left: 13px;width: 95%;"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                        <button id="resetRecipeAddModal" type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
                         <button type="submit" class="btn btn-primary">Speichern</button>
                     </div>
                 </form>

@@ -23,4 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelector(".targetIngredientRow").insertAdjacentHTML('beforebegin', await response.text());
     });
+
+    // handle resetting modal
+    document.querySelector('#resetRecipeAddModal').addEventListener('click', removeAllIngredients);
 });
+
+function removeAllIngredients() {
+    document.querySelectorAll('.recipeIngredientRow').forEach(element => {
+        element.remove();
+    })
+}
