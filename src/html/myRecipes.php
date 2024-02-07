@@ -1,6 +1,6 @@
 <?php
 include_once("../php/DBConnector.php");
-include_once("../php/Rezept/rezept.php");
+include_once("../php/Rezept/recipe.php");
 
 $recipes = DBConnection::getRecipesByIngredients();
 ?>

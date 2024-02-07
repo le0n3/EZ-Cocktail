@@ -1,7 +1,7 @@
 <?php
 
-include_once("Zutat/zutat.php");
-include_once("Rezept/rezept.php");
+include_once("Zutat/ingredient.php");
+include_once("Rezept/recipe.php");
 class DBConnection
 {
     private static string $servername = "localhost";
@@ -534,12 +534,13 @@ class DBConnection
 
         // Verbindung zur Datenbank herstellen.
         $conn = self::getConnection();
-
+        $conn->begin_transaction();
         // SQL-Anweisung zur Erzeugung eines neuen Rezepts.
         $stmt = $conn->prepare("INSERT INTO `rezept`( `name`, `beschreibung`, `zubereitung`) VALUES (?,?,?);");
 
         if(!$stmt){
             echo "Fehler bei der Vorbereitung des SQL-Statements.";
+            $conn->rollback();
             return;
         }
 
@@ -553,6 +554,7 @@ class DBConnection
 
         if(!$stmt->execute()){  // Im Fehlerfall eine Fehlermeldung ausgeben.
             echo "Fehler beim Erstellen des Rezepts: ". $stmt->error;
+            $conn->rollback();
             return;
         }
 
@@ -561,6 +563,7 @@ class DBConnection
 
         if(!$stmt){
             echo "Fehler bei der Vorbereitung des SQL-Statements.";
+            $conn->rollback();
             return;
         }
 
@@ -570,30 +573,31 @@ class DBConnection
 
         if(!$stmt->execute()){
             echo "Fehler beim Hinzufügen des Bildes zum Rezept: ". $stmt->error;
+            $conn->rollback();
             return;
         }
 
         // SQL-Anweisung zur Hinzufügung der Zutaten zum Rezept.
-        $query = "INSERT INTO `zutat_rezept`(`menge`, `rezeptId`, `zutatId`) VALUES (?, (SELECT id FROM rezept WHERE rezept.name = ?), (SELECT id FROM zutat WHERE zutat.name = ?))";
+        $query = "INSERT INTO `zutat_rezept`(`menge`, `rezeptId`, `zutatId`) VALUES (?, (SELECT id FROM rezept WHERE rezept.name = ?), ?)";
         $stmt = $conn->prepare($query);
-
-        // Starte eine Transaktion.
-        $conn->begin_transaction();
 
         try {
             // Füge jede Zutat zum Rezept in der Datenbank hinzu.
             foreach ($ingredients as $ingredient) {
-                $stmt->bind_param("iss", $ingredient->getAmount(), $name, $ingredient->getZutat());
+                $stmt->bind_param("isi", $ingredient->getQuantity(), $name, $ingredient->getId());
                 $stmt->execute();
             }
 
-            $conn->commit();  // Änderungen in der Datenbank speichern.
+
 
         } catch (Exception $e) {
             $conn->rollback();  // Bei Fehlern, alle Änderungen rückgängig machen.
             echo "Fehler beim Hinzufügen der Zutaten zum Rezept: " . $e->getMessage();
             return;
         }
+
+        // Änderungen in der Datenbank speichern.
+        $conn->commit();
     }
 
     /**

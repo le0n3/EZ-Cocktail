@@ -1,6 +1,6 @@
 <?php
 include_once("../php/DBConnector.php");
-include_once("../php/Rezept/rezept.php");
+include_once("../php/Rezept/recipe.php");
 
 $recipes = DBConnection::readAllRecipes();
 $ingredients = DBConnection::readFiltertIngredient(true);
@@ -99,7 +99,7 @@ $ingredients = DBConnection::readFiltertIngredient(true);
     <div class="modal fade" id="recipeAdd" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="../php/recipeAdd.php" autocomplete="off" method="post">
+                <form action="../php/Rezept/recipeAdd.php" autocomplete="off" method="post">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitle">Rezept hinzufügen</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
