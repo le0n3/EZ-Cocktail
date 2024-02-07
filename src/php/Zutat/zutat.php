@@ -2,60 +2,58 @@
 
 class Ingredient
 {
-    private $id;
-    private $ingredient;
-    private $description;
-    private $quantity;
-    private $type;
+    private string $id;
+    private string $name;
+    private string $description;
+    private string $quantity;
+    private string $type;
+    private string $longUnit;
+    private string $unit;
 
-    private $longunit;
-
-    private $unit;
-
-    public function __construct($id, $ingredient, $description, $quantity, $type, $unit ,$longUnit)
+    public function __construct($id, $name, $description, $quantity, $type, $unit ,$longUnit)
     {
         $this->id = $id;
-        $this->ingredient = $ingredient;
+        $this->name = $name;
         $this->description = $description;
         $this->quantity = $quantity;
         $this->type = $type;
         $this->unit = $unit;
-        $this->longunit = $longUnit;
+        $this->longUnit = $longUnit;
     }
 
-    // getters
-    public function getId()
+    // Getters
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function getIngredient()
+    public function getName(): string
     {
-        return $this->ingredient;
+        return $this->name;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function getQuantity()
+    public function getQuantity(): string
     {
         return $this->quantity;
     }
 
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function getUnit()
+    public function getUnit(): string
     {
         return $this->unit;
     }
 
-    public function getLongUnit()
+    public function getLongUnit(): string
     {
-        return $this->longunit;
+        return $this->longUnit;
     }
 }

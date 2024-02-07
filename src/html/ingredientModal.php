@@ -20,7 +20,7 @@ $ingredient = null;
             <div class="row mb-2">
                 <div class="col">
                     <label for="Zutat" class="form-label">Zutat</label>
-                    <input type="text" class="form-control" id="Zutat" name="Zutat" value="<?php echo !is_null($ingredient) ? $ingredient->getIngredient(): ''; ?>">
+                    <input type="text" class="form-control" id="Zutat" name="Zutat" value="<?php echo !is_null($ingredient) ? $ingredient->getName(): ''; ?>">
                 </div>
             </div>
             <div class="row mb-2">

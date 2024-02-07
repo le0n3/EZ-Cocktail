@@ -1,16 +1,35 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Erstellungszeit: 06. Feb 2024 um 17:17
+-- Server-Version: 10.4.32-MariaDB
+-- PHP-Version: 8.2.12
 
-
-Create DATABASE ez_cocktail;
-
-Use [ez_cocktail]
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Datenbank: `ez_cocktail`
+--
+CREATE DATABASE IF NOT EXISTS `ez_cocktail` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `ez_cocktail`;
+
+-- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `einheit`
 --
 
+DROP TABLE IF EXISTS `einheit`;
 CREATE TABLE `einheit` (
                            `id` int(11) NOT NULL,
                            `name` varchar(255) NOT NULL,
@@ -32,6 +51,7 @@ INSERT INTO `einheit` (`id`, `name`, `einheitkuerzel`) VALUES
 -- Tabellenstruktur für Tabelle `rezept`
 --
 
+DROP TABLE IF EXISTS `rezept`;
 CREATE TABLE `rezept` (
                           `id` int(11) NOT NULL,
                           `name` varchar(255) DEFAULT NULL,
@@ -44,7 +64,10 @@ CREATE TABLE `rezept` (
 --
 
 INSERT INTO `rezept` (`id`, `name`, `beschreibung`, `zubereitung`) VALUES
-    (1, 'Jacky Cola', 'erklrt sich ziemlich von allein', 'einfach alles in ein Glas Uns Fertig');
+                                                                       (1, 'Jacky Cola', 'erklrt sich ziemlich von allein', 'einfach alles in ein Glas Uns Fertig'),
+                                                                       (2, 'Margarita', 'Ein klassischer Tequila-Cocktail', '1. Saft einer Limette, 2. 60 ml Tequila, 3. 30 ml Triple Sec, 4. Salz für den Glasrand'),
+                                                                       (3, 'Mojito', 'Ein erfrischender Rum-Cocktail', '1. Saft von einer Limette, 2. 2 Teelöffel Zucker, 3. Einige Minzblätter, 4. 60 ml Rum, 5. Soda zum auffüllen'),
+                                                                       (4, 'Cosmopolitan', 'Ein stylischer Wodka-Cocktail', '1. 45 ml Wodka, 2. 15 ml Triple Sec, 3. 15 ml Limettensaft, 4. 30 ml Cranberrysaft');
 
 -- --------------------------------------------------------
 
@@ -52,6 +75,7 @@ INSERT INTO `rezept` (`id`, `name`, `beschreibung`, `zubereitung`) VALUES
 -- Tabellenstruktur für Tabelle `rezeptbild`
 --
 
+DROP TABLE IF EXISTS `rezeptbild`;
 CREATE TABLE `rezeptbild` (
                               `id` int(11) NOT NULL,
                               `rezeptId` int(11) DEFAULT NULL,
@@ -63,7 +87,10 @@ CREATE TABLE `rezeptbild` (
 --
 
 INSERT INTO `rezeptbild` (`id`, `rezeptId`, `url`) VALUES
-    (0, 1, 'https://media3.giphy.com/media/TcdpZwYDPlWXC/giphy.gif');
+                                                       (1, 1, 'https://media3.giphy.com/media/TcdpZwYDPlWXC/giphy.gif'),
+                                                       (2, 2, 'https://assets.happyplates.com/media/2554/happy-plates-rezept-klassischer-margarita-cocktail-.png?twic=v1/quality=80/focus=50px50p/cover=1200x1200/resize=1200'),
+                                                       (3, 3, 'https://img.chefkoch-cdn.de/rezepte/1163331222441467/bilder/1505733/crop-960x540/mojito.jpg'),
+                                                       (4, 4, 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/cosmopolitan-7a6874f.jpg?quality=90&resize=440,400');
 
 -- --------------------------------------------------------
 
@@ -71,6 +98,7 @@ INSERT INTO `rezeptbild` (`id`, `rezeptId`, `url`) VALUES
 -- Stellvertreter-Struktur des Views `rezeptgesamt`
 -- (Siehe unten für die tatsächliche Ansicht)
 --
+DROP VIEW IF EXISTS `rezeptgesamt`;
 CREATE TABLE `rezeptgesamt` (
                                 `id` int(11)
     ,`name` varchar(255)
@@ -85,6 +113,7 @@ CREATE TABLE `rezeptgesamt` (
 -- Tabellenstruktur für Tabelle `typ`
 --
 
+DROP TABLE IF EXISTS `typ`;
 CREATE TABLE `typ` (
                        `id` int(11) NOT NULL,
                        `name` varchar(255) NOT NULL
@@ -96,7 +125,7 @@ CREATE TABLE `typ` (
 
 INSERT INTO `typ` (`id`, `name`) VALUES
                                      (1, 'Softdrink'),
-                                     (2, 'Wihskey'),
+                                     (2, 'Whiskey'),
                                      (3, 'Frucht');
 
 -- --------------------------------------------------------
@@ -105,6 +134,7 @@ INSERT INTO `typ` (`id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `zutat`
 --
 
+DROP TABLE IF EXISTS `zutat`;
 CREATE TABLE `zutat` (
                          `id` int(11) NOT NULL,
                          `name` varchar(255) NOT NULL,
@@ -118,9 +148,19 @@ CREATE TABLE `zutat` (
 --
 
 INSERT INTO `zutat` (`id`, `name`, `beschreibung`, `typId`, `einheitId`) VALUES
-                                                                             (1, 'Cola', 'Coca Cola', 1, 2),
+                                                                             (1, 'Cola', 'Cola', 1, 2),
                                                                              (2, 'Jack Daniels', 'knallt halt nh', 2, 1),
-                                                                             (3, 'Zitrone', 'boah', 3, 3);
+                                                                             (3, 'Zitronee', ' boah', 3, 2),
+                                                                             (4, 'Sprite', 'Muss mann von Rülpsen', 1, 2),
+                                                                             (15, 'Tequila', 'Ein Alkohol, der aus der blauen Weber-Agave hergestellt wird.', 2, 1),
+                                                                             (16, 'Triple Sec', 'Eine Sorte von starken, süßen und farblosen Orangenlikören.', 2, 1),
+                                                                             (17, 'Limette', 'Eine säuerliche Frucht, die oft in Cocktails verwendet wird.', 3, 3),
+                                                                             (18, 'Rum', 'Eine Spirituose, die durch die Fermentation von Zuckerrohrsaft oder Melasse hergestellt wird.', 2, 1),
+                                                                             (19, 'Zucker', 'Ein süßes Kristallpulver.', 3, 1),
+                                                                             (20, 'Minze', 'Eine Pflanze mit einem frischen Geschmack und Aroma.', 3, 3),
+                                                                             (21, 'Soda', 'Sprudelndes Wasser, oft benutzt als Cocktail-Zutat.', 1, 1),
+                                                                             (22, 'Wodka', 'Eine klare destillierte alkoholische Getränk.', 2, 1),
+                                                                             (23, 'Cranberrysaft', 'Saft, der aus Cranberries gepresst wird.', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -128,6 +168,7 @@ INSERT INTO `zutat` (`id`, `name`, `beschreibung`, `typId`, `einheitId`) VALUES
 -- Stellvertreter-Struktur des Views `zutatgesamt`
 -- (Siehe unten für die tatsächliche Ansicht)
 --
+DROP VIEW IF EXISTS `zutatgesamt`;
 CREATE TABLE `zutatgesamt` (
                                `id` int(11)
     ,`typ` varchar(255)
@@ -135,6 +176,7 @@ CREATE TABLE `zutatgesamt` (
     ,`beschreibung` varchar(255)
     ,`menge` float
     ,`einheit` varchar(10)
+    ,`einheitlang` varchar(255)
 );
 
 -- --------------------------------------------------------
@@ -143,6 +185,7 @@ CREATE TABLE `zutatgesamt` (
 -- Tabellenstruktur für Tabelle `zutatinventar`
 --
 
+DROP TABLE IF EXISTS `zutatinventar`;
 CREATE TABLE `zutatinventar` (
                                  `id` int(11) NOT NULL,
                                  `menge` float NOT NULL,
@@ -164,6 +207,7 @@ INSERT INTO `zutatinventar` (`id`, `menge`, `zutatId`) VALUES
 -- Tabellenstruktur für Tabelle `zutat_rezept`
 --
 
+DROP TABLE IF EXISTS `zutat_rezept`;
 CREATE TABLE `zutat_rezept` (
                                 `id` int(11) NOT NULL,
                                 `menge` float NOT NULL,
@@ -178,7 +222,19 @@ CREATE TABLE `zutat_rezept` (
 INSERT INTO `zutat_rezept` (`id`, `menge`, `rezeptId`, `zutatId`) VALUES
                                                                       (1, 120, 1, 1),
                                                                       (3, 4, 1, 2),
-                                                                      (4, 1, 1, 3);
+                                                                      (4, 1, 1, 3),
+                                                                      (5, 60, 2, 15),
+                                                                      (6, 30, 2, 16),
+                                                                      (7, 1, 2, 17),
+                                                                      (8, 60, 3, 18),
+                                                                      (9, 2, 3, 19),
+                                                                      (10, 1, 3, 17),
+                                                                      (11, 1, 3, 20),
+                                                                      (12, 1, 3, 21),
+                                                                      (13, 45, 4, 22),
+                                                                      (14, 15, 4, 16),
+                                                                      (15, 15, 4, 17),
+                                                                      (16, 30, 4, 23);
 
 -- --------------------------------------------------------
 
@@ -187,6 +243,7 @@ INSERT INTO `zutat_rezept` (`id`, `menge`, `rezeptId`, `zutatId`) VALUES
 --
 DROP TABLE IF EXISTS `rezeptgesamt`;
 
+DROP VIEW IF EXISTS `rezeptgesamt`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `rezeptgesamt`  AS SELECT `rezept`.`id` AS `id`, `rezept`.`name` AS `name`, `rezept`.`beschreibung` AS `beschreibung`, `rezept`.`zubereitung` AS `zubereitung`, `rezeptbild`.`url` AS `url` FROM (`rezept` left join `rezeptbild` on(`rezept`.`id` = `rezeptbild`.`rezeptId`)) ;
 
 -- --------------------------------------------------------
@@ -196,7 +253,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `zutatgesamt`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `zutatgesamt`  AS SELECT `zutat`.`id` AS `id`, `typ`.`name` AS `typ`, `zutat`.`name` AS `name`, `zutat`.`beschreibung` AS `beschreibung`, `zutatinventar`.`menge` AS `menge`, `einheit`.`einheitkuerzel` AS `einheit` FROM (((`zutat` left join `typ` on(`zutat`.`typId` = `typ`.`id`)) left join `einheit` on(`zutat`.`einheitId` = `einheit`.`id`)) left join `zutatinventar` on(`zutat`.`id` = `zutatinventar`.`zutatId`)) ;
+DROP VIEW IF EXISTS `zutatgesamt`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `zutatgesamt`  AS SELECT `zutat`.`id` AS `id`, `typ`.`name` AS `typ`, `zutat`.`name` AS `name`, `zutat`.`beschreibung` AS `beschreibung`, `zutatinventar`.`menge` AS `menge`, `einheit`.`einheitkuerzel` AS `einheit`, `einheit`.`name` AS `einheitlang` FROM (((`zutat` left join `typ` on(`zutat`.`typId` = `typ`.`id`)) left join `einheit` on(`zutat`.`einheitId` = `einheit`.`id`)) left join `zutatinventar` on(`zutat`.`id` = `zutatinventar`.`zutatId`)) ;
 
 --
 -- Indizes der exportierten Tabellen
@@ -258,37 +316,43 @@ ALTER TABLE `zutat_rezept`
 -- AUTO_INCREMENT für Tabelle `einheit`
 --
 ALTER TABLE `einheit`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `rezept`
 --
 ALTER TABLE `rezept`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT für Tabelle `rezeptbild`
+--
+ALTER TABLE `rezeptbild`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `typ`
 --
 ALTER TABLE `typ`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `zutat`
 --
 ALTER TABLE `zutat`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT für Tabelle `zutatinventar`
 --
 ALTER TABLE `zutatinventar`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT für Tabelle `zutat_rezept`
 --
 ALTER TABLE `zutat_rezept`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints der exportierten Tabellen

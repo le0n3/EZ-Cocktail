@@ -2,8 +2,7 @@
 include_once("../php/DBConnector.php");
 include_once("../php/Rezept/rezept.php");
 
-$recipes = DBConnection::readAllRecipes();
-
+$recipes = DBConnection::getRecipesByIngredients();
 ?>
 
 <!doctype html>
