@@ -1,7 +1,7 @@
 <?php
 
 include_once("../php/DBConnector.php");
-include_once("../php/Rezept/rezept.php");
+include_once("../php/Rezept/recipe.php");
 include_once("../php/Rezept/recipeIngedeans.php");
 
     $id = array_key_exists('id', $_REQUEST) ? $_REQUEST['id'] : '';
