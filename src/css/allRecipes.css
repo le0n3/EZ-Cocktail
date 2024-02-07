@@ -1,0 +1,11 @@
+#ingredientsTable .ingredientSelect {
+    min-width: 275px;
+    max-width: 275px;
+}
+#ingredientsTable .ingredientAmount {
+    min-width: 70px;
+    max-width: 70px;
+}
+#ingredientsTable .ingredientUnit {
+    width: 100%;
+}

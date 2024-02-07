@@ -108,12 +108,9 @@ $recipes = DBConnection::getRecipesByIngredients();
     <!-- Modal -->
     <div class="modal fade" id="recipeDetail" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" id="detailInfo">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-            <button type="submit" class="btn btn-primary">Zubereiten</button>
+            <form action="../php/Rezept/recipeMixed.php">
+                <div class="modal-content" id="detailInfo"></div>
+            </form>
         </div>
     </div>
 

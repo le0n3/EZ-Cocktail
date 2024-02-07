@@ -11,7 +11,7 @@ $myIngredient = null;
 
 <form action="../php/ManipulteMyIngredients.php" autocomplete="off" method="post">
     <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle">Zutat <?php echo !is_null($myIngredient) ? 'Bearbeiten': 'Hinzufügen'; ?></h5>
+        <h5 class="modal-title" id="modalTitle"><?php echo !is_null($myIngredient) ? 'Zutat bearbeiten': 'Zutat hinzufügen'; ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
