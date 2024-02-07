@@ -3,7 +3,7 @@ include_once("../php/DBConnector.php");
 include_once("../php/Rezept/rezept.php");
 
 $recipes = DBConnection::readAllRecipes();
-
+$ingredients = DBConnection::readFiltertIngredient(true);
 ?>
 
 <!doctype html>
@@ -64,46 +64,25 @@ $recipes = DBConnection::readAllRecipes();
           </ul>
       </div>
       <div class="w-100">
-        <!--for future implementation-->
-        <div class="row d-none">
-<!--          <div class="filter-container m-auto shadow rounded bg-light">-->
-<!--            <div class="">-->
-<!--              <div class="row"><h1>Filter</h1></div>-->
-<!--              <div class="row">-->
-<!--                <div class="col">-->
-<!--                  <div class="mb-3">-->
-<!--                    <label for="recipeName" class="form-label">Rezeptname</label>-->
-<!--                    <input type="text" class="form-control" id="recipeName">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <div class="mb-3">-->
-<!--                    <label for="difficulty" class="form-label">Schwierigkeit</label>-->
-<!--                    <input type="text" class="form-control" id="difficulty">-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                -->
-<!--              </div>-->
-<!--            </div>-->
-          </div>
         <div class="row">
             <div class="cards-container m-auto shadow rounded bg-light">
-
-                <div class="card" id="add_entry_card" data-bs-toggle="modal" data-bs-target="#recipeAdd">
-                <img src="../Images/plus.png" class="card-img-top" alt="add">
+            <div class="card" id="add_entry_card" data-bs-toggle="modal" data-bs-target="#recipeAdd">
+                <img src="../Images/plus.png" class="card-img-top" alt="cooler-gandalf">
                 <div class="card-body">
-                    <h5 class="card-title"></h5>
+                    <h5 class="card-title">Hinzufügen</h5>
                     <div class="description-container">
+                        Neues Rezept erstellen
                     </div>
                 </div>
             </div>
+
             <?php
             foreach($recipes as $recipe)
             {
                 echo $recipe->generateRecepeCard();
             }
             ?>
-            </div>
+
         </div>
       </div>
 
@@ -148,23 +127,26 @@ $recipes = DBConnection::readAllRecipes();
                                     <table class="table-primary" id="ingredientsTable">
                                         <thead>
                                         <tr>
+                                            <th class="w-100" colspan="100%">
+                                                <label class="w-100">
+                                                    <select class="form-select ingredientSelectElement">
+                                                        <option selected disabled>Bitte wählen</option>
+                                                        <?php
+                                                            foreach ($ingredients as $ingredient) {
+                                                                echo '<option value="'.$ingredient->getId().'">'.$ingredient->getName().'</option>';
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </label>
+                                            </th>
+                                        </tr>
+                                        <tr>
                                             <th class="ingredientSelect">Zutat</th>
                                             <th class="ingredientAmount">Menge</th>
                                             <th class="ingredientUnit">Einheit</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="ingredientSelect">
-                                                    <label class="w-100">
-                                                        <select name="zutaten[id][]" class="form-select ingredientSelectElement">
-                                                            <option selected disabled>Bitte wählen</option>
-                                                        </select>
-                                                    </label>
-                                                </td>
-                                                <td class="ingredientAmount"><label class="w-100"><input class="form-control" type="text" name="zutaten[menge][]"></label></td>
-                                                <td class="ingredientUnit"><label class="w-100"><input class="form-control" type="text" name="zutaten[einheit][]"></label></td>
-                                            </tr>
                                             <tr class="targetIngredientRow d-none"></tr>
                                         </tbody>
                                     </table>

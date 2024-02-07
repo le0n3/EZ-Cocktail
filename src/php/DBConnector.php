@@ -41,7 +41,6 @@ class DBConnection
      * @param string $orderBy
      * @param string $reihenfolge
      * @return array
-     * @throws Exception
      */
     public static function readFiltertIngredient(bool $withNull = false,string $name = '',string $menge = '', string $einheit = '', string $typ = '', string $beschreibung= '', string $orderBy = 'name' , string $reihenfolge = 'asc'): array {
 
@@ -64,7 +63,7 @@ class DBConnection
         );
 
         if(!$stmt){
-            throw new Exception('Error preparing statement');
+            return [];
         }
 
         // bind parameters

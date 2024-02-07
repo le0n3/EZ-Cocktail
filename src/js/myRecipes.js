@@ -12,15 +12,4 @@ document.addEventListener('DOMContentLoaded', function () {
             contentDiv.innerHTML = await response.text();
         });
     });
-
-    // handle adding new recipes
-    let selectElement = document.querySelector('.ingredientSelectElement');
-    selectElement.addEventListener('change', async function () {
-        let id = selectElement.value;
-        let response = await fetch(`../html/ingredientSelectRow.php/?id=${id}`).catch(function () {
-            alert('Es ist ein Fehler aufgetreten. Laden Sie die Seite erneut.');
-        })
-
-        document.querySelector(".targetIngredientRow").insertAdjacentHTML('beforebegin', await response.text());
-    });
 });

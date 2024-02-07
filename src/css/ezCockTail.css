@@ -9,3 +9,7 @@
     border-radius: 8px;
     background-color: #999;
 }
+.modal-body {
+    overflow-y: scroll;
+    max-height: 69vh;
+}

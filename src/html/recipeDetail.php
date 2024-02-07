@@ -34,7 +34,3 @@ include_once("../php/Rezept/recipeIngedeans.php");
             <p><?php echo $recipe->getZubereitung()?></p>
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-        <button type="submit" class="btn btn-primary">Zubereiten</button>
-    </div>
