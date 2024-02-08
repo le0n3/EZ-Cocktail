@@ -87,7 +87,7 @@ class DBConnectionTest extends TestCase
 
     public function testgetRecipesByIngredients()
     {
-        $recipes = DBConnection::S})})();
+        $recipes = DBConnection::getRecipesByIngredients();
         $this->assertIsArray( $recipes);
         $this->assertCount(1, $recipes);
     }
