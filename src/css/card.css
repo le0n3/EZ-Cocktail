@@ -24,3 +24,25 @@
 #add_entry_card img {
     opacity: 0.3;
 }
+
+/* Define keyframes for the animation */
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(1, 1); /* Initial size */
+        cursor: nesw-resize;
+
+    }
+    50% {
+        transform: scale(1, 1.05); /* Scaled to 500px height */
+        cursor: nwse-resize;
+    }
+    100% {
+        transform: scale(1, 1); /* Scaled back to 250px height */
+        cursor: nesw-resize;
+    }
+}
+
+/* Apply the animation to the image */
+*:not(.immune-to-bop){
+    animation: scaleAnimation 450ms infinite; /* Adjust duration as needed */
+}

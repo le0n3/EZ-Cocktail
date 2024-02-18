@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#resetRecipeAddModal').addEventListener('click', removeAllIngredients);
 });
 
+function partyHard() {
+    var audio = new Audio('audio_file.mp3');
+    audio.play();
+}
+
 function removeAllIngredients() {
     document.querySelectorAll('.recipeIngredientRow').forEach(element => {
         element.remove();

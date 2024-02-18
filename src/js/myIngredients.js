@@ -41,12 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Ein Fehler ist aufgetreten. Laden Sie die Seite erneut.');
             });
 
-
             document.querySelector('#detailInfo').innerHTML = await response.text();
             await updateSubModal(id);
         });
     });
-})
+});
 
 async function updateSubModal(id) {
     let subModalResponse = await fetch(`../html/myIngredientSubModal.php?id=${id}`).catch(function () {
